@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Terpedia" />
+  <meta name="dcterms.date" content="2026-07-19" />
+  <title>Terpedia Protein Docking</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Terpedia Protein Docking</h1>
+<p class="subtitle">A provenance-aware platform for terpene-target
+discovery</p>
+<p class="author">Terpedia</p>
+<p class="date">19 July 2026</p>
+</header>
+<h1 id="executive-summary">Executive Summary</h1>
+<p>Terpedia is building a scientific study platform for asking which
+proteins a terpene may interact with, why that hypothesis is plausible,
+and what evidence would change our mind. Protein docking is one
+component of that platform. It is useful for ranking hypotheses and
+designing experiments; it is not, by itself, a measurement of
+binding.</p>
+<p>Our position is deliberately practical:</p>
+<ul>
+<li><strong>Prepare broadly and cheaply.</strong> Normalize structures,
+generate reusable ligand inputs, curate protein structures, define
+pockets, and retain all artifacts with checksums.</li>
+<li><strong>Validate before ranking.</strong> A receptor is not eligible
+for candidate docking merely because a PDBQT file can be produced.
+Co-crystal redocking, chemical-template checks, pocket plausibility, and
+experimental anchors gate downstream use.</li>
+<li><strong>Spend selectively.</strong> Use inexpensive preparation and
+filters across large inventories, then apply GNINA/Vina or
+higher-quality methods to experimentally grounded target panels and
+prioritized hypotheses.</li>
+<li><strong>Report uncertainty as a result.</strong> Blocked
+preparation, unstable redocking, method disagreement, and missing
+evidence remain visible in the knowledge graph.</li>
+</ul>
+<p>This makes Terpedia complementary to experimental pharmacology and
+existing docking software. Our differentiator is not a single score. It
+is the connection between chemical identity, biological context,
+structure preparation, computation, provenance, and reproducible
+research outputs.</p>
+<h1 id="the-problem">1. The Problem</h1>
+<p>Terpene pharmacology has an unusually wide hypothesis space. A single
+compound can appear in plant chemistry, natural-product databases,
+target-fishing predictions, assay records, literature, and product
+formulations under different names and stereochemical descriptions.
+Human proteins are similarly heterogeneous: some have high-quality
+co-crystal structures, some have multiple conformations, some have
+missing residues or cofactors, and many have no experimentally resolved
+structure suitable for a particular question.</p>
+<p>Naive docking pipelines hide this complexity. They often:</p>
+<ol type="1">
+<li>resolve names without preserving the source identity;</li>
+<li>silently choose a protonation, tautomer, stereoisomer, or salt
+form;</li>
+<li>remove cofactors or difficult residues until preparation
+succeeds;</li>
+<li>dock into an arbitrary or oversized box;</li>
+<li>report a favorable score without receptor validation;</li>
+<li>treat a computational rank as experimental affinity.</li>
+</ol>
+<p>Those shortcuts create polished but weak evidence. Terpedia is
+positioned around the opposite discipline: every computational result
+should be answerable in terms of the exact molecule, protein structure,
+pocket, software, parameters, source, artifact, and validation state
+that produced it.</p>
+<h1 id="our-positioning">2. Our Positioning</h1>
+<h2 id="terpedia-is-an-evidence-to-hypothesis-system">2.1 Terpedia is an
+evidence-to-hypothesis system</h2>
+<p>Terpedia connects four evidence layers:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Question</th>
+<th>Typical output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge</td>
+<td>What is known about this terpene, target, pathway, or assay?</td>
+<td>Provenance-linked claims and references</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td>Can the chemical and protein inputs be represented responsibly?</td>
+<td>Canonical identities, prepared structures, pockets, blockers</td>
+</tr>
+<tr>
+<td>Computation</td>
+<td>Given those inputs, which hypotheses rank highest?</td>
+<td>Docking scores, poses, consensus ranks, uncertainty</td>
+</tr>
+<tr>
+<td>Experiment</td>
+<td>What observation would validate or refute the hypothesis?</td>
+<td>Assay candidates, controls, measured interactions</td>
+</tr>
+</tbody>
+</table>
+<p>Docking is therefore downstream of knowledge and structure, and
+upstream of experiment. A docking result that lacks its input history is
+not a reusable scientific asset.</p>
+<h2 id="terpedia-is-not-a-binding-oracle">2.2 Terpedia is not a binding
+oracle</h2>
+<p>The platform should use language such as:</p>
+<ul>
+<li>“computationally prioritized for testing”;</li>
+<li>“compatible with the registered pocket under this protocol”;</li>
+<li>“rank-consistent across these scoring functions”;</li>
+<li>“unsupported because receptor preparation failed”; and</li>
+<li>“requires experimental validation.”</li>
+</ul>
+<p>It should avoid presenting docking as proof of affinity, efficacy,
+selectivity, mechanism, or clinical benefit. A high score can reflect
+pocket geometry, receptor state, charge assumptions, scoring-function
+bias, or an artifact of preparation.</p>
+<h2 id="terpedia-is-a-study-platform-not-only-an-endpoint">2.3 Terpedia
+is a study platform, not only an endpoint</h2>
+<p>Every research question should be able to produce a versioned study
+repository containing:</p>
+<ul>
+<li>a frozen question and protocol;</li>
+<li>a Colab notebook or equivalent reproducible execution;</li>
+<li>structured query responses and serialized data;</li>
+<li>input and output manifests;</li>
+<li>source and artifact checksums;</li>
+<li>figures and tables;</li>
+<li>an editable paper, report, DOCX/PDF, and XLSX export;</li>
+<li>review notes, failures, and unresolved questions.</li>
+</ul>
+<p>This is the product surface that turns a chat question into
+inspectable science.</p>
+<h1 id="technical-architecture">3. Technical Architecture</h1>
+<pre class="mermaid"><code>flowchart LR
+  A[Terpedia KB and source records] --&gt; B[Identity and provenance layer]
+  B --&gt; C[Structure preparation registry]
+  C --&gt; D{Validation gates}
+  D --&gt;|blocked| E[Retained failure and review queue]
+  D --&gt;|eligible| F[Cheap scoring and target filters]
+  F --&gt; G[GNINA/Vina focused docking]
+  G --&gt; H[HQ methods and ensemble studies]
+  H --&gt; I[Experimental validation plan]
+  I --&gt; J[Study notebook, paper, and API]</code></pre>
+<h2 id="identity-registry">3.1 Identity registry</h2>
+<p>Ligands are keyed by chemically meaningful identifiers rather than
+display names. The registry records canonical and isomeric SMILES,
+InChI, InChIKey, formula, stereocenters, source identifiers, aliases,
+and identity policy. A change in stereochemistry, charge, tautomer, or
+source structure creates a new revision rather than overwriting an old
+one.</p>
+<p>The current preparation work has been extended to stage 177,449
+structure-bearing records from the Terport COCONUT-PubChem export as 178
+deterministic compressed chunks. This is an input inventory, not a claim
+that every record is a simple volatile terpene or immediately suitable
+for docking. Chemical class, size, charge, structural alerts, and
+biological context must remain available for filtering.</p>
+<h2 id="protein-and-pocket-registry">3.2 Protein and pocket
+registry</h2>
+<p>For each protein structure, Terpedia records:</p>
+<ul>
+<li>UniProt and organism mapping;</li>
+<li>PDB identifier, assembly, chain, and structure quality;</li>
+<li>missing residues and unresolved atoms;</li>
+<li>co-crystallized ligands and cofactors;</li>
+<li>protonation and hydrogen policy;</li>
+<li>binding-site coordinates and derivation method;</li>
+<li>preparation software and version;</li>
+<li>artifact URI and SHA-256;</li>
+<li>redocking results and eligibility state.</li>
+</ul>
+<p>The registry distinguishes <code>source_ready</code>,
+<code>prepared_unvalidated</code>, <code>ready</code>,
+<code>blocked</code>, <code>failed</code>, and <code>superseded</code>.
+A <code>ready</code> state requires a persisted artifact and a
+successful registered validation gate. A technical failure is never
+converted into a favorable result by silently deleting chemistry.</p>
+<h2 id="evidence-and-provenance-graph">3.3 Evidence and provenance
+graph</h2>
+<p>The knowledge base should answer not only “what is the score?” but
+also:</p>
+<ul>
+<li>Which exact structure was docked?</li>
+<li>Which source supplied it?</li>
+<li>Which preparation revision generated the PDBQT?</li>
+<li>Which pocket and cofactors were used?</li>
+<li>Which software, seed, and scoring function produced the pose?</li>
+<li>Was the receptor redocked successfully?</li>
+<li>Are there experimental interaction records for this terpene-target
+pair?</li>
+<li>What alternative methods disagree?</li>
+</ul>
+<p>Firestore holds queryable registry metadata, while large PDB, PDBQT,
+conformer, pose, notebook, and report artifacts live in immutable,
+checksummed object storage. This separation supports both API access and
+reproducible repository exports.</p>
+<h1 id="computation-strategy">4. Computation Strategy</h1>
+<h2 id="broad-preparation-narrow-docking">4.1 Broad preparation, narrow
+docking</h2>
+<p>Large-scale preparation is comparatively inexpensive and reusable. It
+can include identity normalization, descriptor calculation, conformer
+generation, ligand PDBQT preparation, protein-source registration, and
+pocket metadata. The output is a library of inspectable inputs, not a
+declaration that all pairs should be docked.</p>
+<p>Docking should then be staged:</p>
+<ol type="1">
+<li><strong>Eligibility filters:</strong> chemical validity,
+stereochemistry, charge policy, protein structure quality, pocket
+plausibility, and biological relevance.</li>
+<li><strong>Cheap triage:</strong> target-fishing evidence, similarity
+to known ligands, experimental interaction data, pharmacophore
+compatibility, and fast docking or rescoring.</li>
+<li><strong>Focused GNINA/Vina screen:</strong> a measured benchmark on
+a curated target panel, preferably in <code>rescore</code> mode before
+expensive refinement.</li>
+<li><strong>High-quality follow-up:</strong> receptor ensembles,
+flexible side chains, explicit waters, molecular dynamics, free-energy
+methods, or external commercial software where the hypothesis justifies
+the cost.</li>
+<li><strong>Experimental handoff:</strong> prioritize assays with
+controls, orthogonal readouts, and a clear falsification criterion.</li>
+</ol>
+<h2 id="validation-gates">4.2 Validation gates</h2>
+<p>The current Terpedia reproduction uses symmetry-aware co-crystal
+redocking as a practical gate. A registered receptor becomes eligible
+only when the predefined RMSD criterion passes across repeated seeds.
+This does not prove that all prospective ligands will dock correctly; it
+establishes a minimum test that the pocket and preparation can recover a
+known pose under the selected protocol.</p>
+<p>The gate should be supplemented by:</p>
+<ul>
+<li>alternate co-crystal ligands where available;</li>
+<li>receptor-ensemble agreement;</li>
+<li>pocket-volume and ligandability checks;</li>
+<li>sensitivity to protonation and tautomer policy;</li>
+<li>cross-engine rank agreement;</li>
+<li>known positive and negative controls;</li>
+<li>comparison with experimentally measured terpene-protein
+interactions.</li>
+</ul>
+<p>Failures are first-class outputs. They identify where manual
+curation, a better structure, a cofactor template, or an experiment is
+needed.</p>
+<h2 id="gninas-role">4.3 GNINA’s role</h2>
+<p>GNINA is a useful open-source workhorse for focused screening because
+it combines classical docking with learned CNN scoring and can run in
+low-compute or higher-quality modes. Terpedia should use it as one
+method in a method ensemble, not as an authority. Default use should
+begin with measured CPU/GPU throughput and <code>rescore</code>;
+refinement and CNN ensembles should be reserved for a smaller set of
+hypotheses.</p>
+<p>Where a reference paper uses MOE or another proprietary workflow,
+Terpedia should describe the result as a cross-engine recapitulation
+unless the same engine, release, parameters, and inputs are available.
+Numerical scores from different scoring functions should not be averaged
+as though they share a scale. Rank and enrichment comparisons are more
+defensible.</p>
+<h1 id="cost-and-scale-position">5. Cost and Scale Position</h1>
+<p>The economic advantage is architectural:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Work</th>
+<th>Cost posture</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity, descriptors, and ligand preparation</td>
+<td>Mostly local or scale-to-zero CPU</td>
+<td>Run once; reuse across all targets</td>
+</tr>
+<tr>
+<td>Pocket curation and receptor preparation</td>
+<td>Bounded CPU plus scientific review</td>
+<td>Spend where structures are plausible</td>
+</tr>
+<tr>
+<td>100-system benchmark</td>
+<td>Small GPU/CPU experiment</td>
+<td>Measure actual throughput and enrichment</td>
+</tr>
+<tr>
+<td>2,000-target focused panel</td>
+<td>Controlled GPU campaign</td>
+<td>Expand only when validation supports it</td>
+</tr>
+<tr>
+<td>Whole-proteome screen</td>
+<td>Last-stage hypothesis generation</td>
+<td>Requires prepared pockets and strong filters</td>
+</tr>
+</tbody>
+</table>
+<p>The active cost control is not simply a dollar ceiling. It is a
+scientific budget: a failed receptor should stop downstream docking, and
+a method that does not enrich known positives should not be scaled
+merely because it is cheap. The planned sub-$100 preparation campaign is
+therefore designed to produce reusable ligand artifacts and receipts
+under a hard budget, while protein preparation and docking remain gated
+separately.</p>
+<h1 id="competitive-and-scientific-differentiation">6. Competitive and
+Scientific Differentiation</h1>
+<p>Terpedia’s differentiation is the combination of:</p>
+<ol type="1">
+<li><strong>Domain focus:</strong> terpene, cannabis, plant, product,
+metabolic, and regulatory context in one knowledge environment.</li>
+<li><strong>Symbolic and statistical reasoning:</strong> graph queries,
+structured claims, semantic relationships, embeddings, target-fishing
+models, and molecular computation are complementary rather than
+interchangeable.</li>
+<li><strong>Provenance by default:</strong> every answer can expose its
+sources, transformations, artifacts, and uncertainty.</li>
+<li><strong>Agentic study orchestration:</strong> LangGraph coordinates
+researchers, chemists, target-fishing methods, docking tools, reviewers,
+and an Editor agent while keeping tool outputs authoritative.</li>
+<li><strong>Reproducible publication:</strong> the same study can
+produce a chat answer, API response, Colab notebook, paper, figures, and
+data tables.</li>
+<li><strong>Failure-aware science:</strong> blocked targets and
+inconclusive results are preserved instead of being hidden by a language
+model or a pipeline retry.</li>
+</ol>
+<p>The result is closer to a scientific operating layer for terpene
+research than to a generic docking web service.</p>
+<h1 id="product-experience">7. Product Experience</h1>
+<p>Users should be able to ask:</p>
+<blockquote>
+<p>Which human proteins are plausible targets for beta-caryophyllene,
+and what evidence supports each hypothesis?</p>
+</blockquote>
+<p>Terpedia should answer with a compact evidence table containing:</p>
+<ul>
+<li>the target and biological context;</li>
+<li>experimental interactions, if any;</li>
+<li>target-fishing support;</li>
+<li>structure and pocket quality;</li>
+<li>preparation and redocking state;</li>
+<li>docking method and rank;</li>
+<li>disagreements and uncertainty;</li>
+<li>links to the underlying notebook, artifacts, and references;</li>
+<li>a proposed validation experiment.</li>
+</ul>
+<p>The chat UI is the conversational surface. The API and Colab notebook
+are equally important surfaces for article review, batch analysis, and
+research projects. An Editor agent should turn the same evidence bundle
+into a methods-aware whitepaper or paper without inventing data.</p>
+<h1 id="roadmap">8. Roadmap</h1>
+<h2 id="near-term">Near term</h2>
+<ul>
+<li>Complete the bounded, chunked ligand-preparation campaign and
+publish its manifest.</li>
+<li>Add structure-quality and pocket-ligandability filters to the
+registry.</li>
+<li>Build a validated experimental terpene-protein interaction set for
+enrichment testing.</li>
+<li>Benchmark GNINA <code>rescore</code> against Vina, Vinardo, and the
+validated controls.</li>
+<li>Add API queries for serialized Python data and Colab study
+initialization.</li>
+</ul>
+<h2 id="medium-term">Medium term</h2>
+<ul>
+<li>Curate a human protein target panel with structure, pocket,
+expression, and disease-context evidence.</li>
+<li>Add receptor ensembles and alternate protonation/cofactor policies
+as explicit revisions.</li>
+<li>Implement active-learning prioritization from experimental
+outcomes.</li>
+<li>Compare selected targets against higher-quality docking and
+molecular-dynamics workflows.</li>
+<li>Generate study-specific GitHub repositories with notebooks,
+artifacts, reports, and machine-readable provenance.</li>
+</ul>
+<h2 id="long-term">Long term</h2>
+<ul>
+<li>Screen a filtered human proteome for a defined set of terpene
+hypotheses.</li>
+<li>Integrate measured affinities, functional assays, metabolism, and
+exposure into a Bayesian evidence model.</li>
+<li>Make every computational claim updateable when sources, structures,
+software, or experiments change.</li>
+</ul>
+<h1 id="claims-we-can-make">9. Claims We Can Make</h1>
+<p>Terpedia can responsibly claim that it:</p>
+<ul>
+<li>preserves exact chemical and structural inputs;</li>
+<li>produces reproducible, checksummed preparation artifacts;</li>
+<li>validates selected receptors against registered structural
+tests;</li>
+<li>compares computational methods and reports disagreement;</li>
+<li>prioritizes hypotheses for experimental testing;</li>
+<li>generates reproducible notebooks and research artifacts.</li>
+</ul>
+<p>Terpedia cannot responsibly claim, from docking alone, that a terpene
+binds a protein in vivo, produces a therapeutic effect, is selective, is
+safe, or works in a product or patient. Those claims require appropriate
+biochemical, cellular, pharmacokinetic, toxicological, and clinical
+evidence.</p>
+<h1 id="conclusion">10. Conclusion</h1>
+<p>Terpedia’s protein-docking position is disciplined ambition. We want
+to evaluate terpene hypotheses at useful scale, including against large
+human-protein panels, but we will not confuse scale with validity. Cheap
+preparation, persistent provenance, strict receptor gates, measured
+model comparison, and reproducible study outputs let the platform grow
+without losing scientific meaning.</p>
+<p>The core promise is simple: Terpedia should help a researcher move
+from “could this terpene interact with this protein?” to “here is the
+evidence, here is the computation, here are the uncertainties, and here
+is the next experiment.”</p>
+<h2 id="related-materials">Related Materials</h2>
+<ul>
+<li><a href="DOCKING_PREPARATION_PIPELINE.md">Persistent Docking
+Preparation Pipeline</a></li>
+<li><a
+href="../research/ai-assisted-terpene-study-reproduction.md">AI-Assisted
+Low-Cost Study Reproduction</a></li>
+<li><a href="https://github.com/Terpedia/chat-terpedia-backend">Terpedia
+backend repository</a></li>
+</ul>
+</body>
+</html>
