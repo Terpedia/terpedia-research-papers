@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A reproducible sensitivity analysis
-comparing open-source AutoDock Vina and reference MOE ligand rankings
-across five terpene-relevant protein targets.">
+  <meta name="description" content="A reproducible comparison of
+target-fishing consensus and open-source AutoDock Vina results with
+reference MOE rankings across five terpene-relevant protein targets.">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Reproduction and Concordance
 Analysis of Terpene Molecular Docking using AutoDock Vina">
-  <meta property="og:description" content="A reproducible sensitivity
-analysis comparing open-source AutoDock Vina and reference MOE ligand
-rankings across five terpene-relevant protein targets.">
+  <meta property="og:description" content="A reproducible comparison of
+target-fishing consensus and open-source AutoDock Vina results with
+reference MOE rankings across five terpene-relevant protein targets.">
   <meta property="og:url" content="https://terpedia.github.io/terpedia-research-papers/papers/terpene-docking-reproduction/">
   <meta name="twitter:card" content="summary">
   <title>Reproduction and Concordance Analysis of Terpene Molecular
@@ -30,322 +30,314 @@ Docking using AutoDock Vina | Terpedia Research</title>
         <p class="paper-kicker">Computational reproduction study</p>
         <h1>Reproduction and Concordance Analysis of Terpene Molecular
 Docking using AutoDock Vina</h1>
-        <p class="paper-deck">A reproducible sensitivity analysis
-comparing open-source AutoDock Vina and reference MOE ligand rankings
-across five terpene-relevant protein targets.</p>
-        <div class="paper-meta"><span>Published July 18, 2026</span><span>Terpedia Scientific Study Platform</span><span>Revision 3</span></div>
+        <p class="paper-deck">A reproducible comparison of
+target-fishing consensus and open-source AutoDock Vina results with
+reference MOE rankings across five terpene-relevant protein targets.</p>
+        <div class="paper-meta"><span>Published July 19, 2026</span><span>Terpedia Scientific Study Platform</span><span>Revision 6</span></div>
       </div>
-      <div class="article-body"><h1
-id="reproduction-and-concordance-analysis-of-terpene-molecular-docking-using-autodock-vina">Reproduction
-and Concordance Analysis of Terpene Molecular Docking using AutoDock
-Vina</h1>
-<h2 id="abstract">Abstract</h2>
-<p><strong>Background:</strong> Terpenes, a diverse class of natural
-products, are increasingly recognized for their potential therapeutic
-properties, often mediated through interactions with various biological
-targets. Computational methods, such as molecular docking, are crucial
-for identifying and characterizing these interactions. A previous study
-utilized proprietary MOE software for target fishing and molecular
-docking of 23 terpenes against a panel of five targets. This work aims
-to reproduce and evaluate the rank concordance of the docking component
-of that study using a fully open-source and reproducible workflow.</p>
-<p><strong>Methods:</strong> We developed and executed an open-source
-molecular docking protocol using RDKit, Meeko, and AutoDock Vina. This
-protocol was applied to the same set of 23 terpenes and relevant control
-ligands against the five specified protein targets: Cannabinoid Receptor
-2 (CB2/6KPF), Androgen Receptor (AR/3V49), Cytochrome P450 19A1
-(CYP19A1/3EQM), Estrogen Receptor Beta (ERbeta/1L2J), and
-11-beta-Hydroxysteroid Dehydrogenase 1 (11beta-HSD1/1XU7). Ligand
-efficiency was calculated as the absolute Vina docking score magnitude
-divided by the number of heavy atoms. Rank concordance between the newly
-computed Vina docking results and the reference MOE results was assessed
-using Spearman rank correlation coefficients and top-5 ligand overlap
-(Jaccard index) for each target. Due to the unavailability of row-level
-target-fishing outputs from the original study, target-fishing
-consensus, TF+/TF- enrichment, and tool ablation analyses could not be
-recomputed.</p>
-<p><strong>Results:</strong> A total of 130 Vina docking observations
-were successfully generated across the five targets. Comparisons were
-made for 129 shared ligand-target pairs between the Vina and reference
-MOE docking results. Spearman rank correlations for the five targets
-were: 11beta-HSD1 (0.559, moderate), AR (0.2752, low), CB2 (0.292, low),
-CYP19A1 (0.4435, modest), and ERbeta (0.4161, modest). The top-5 ligand
-overlaps (Jaccard index) were: 11beta-HSD1 (0.6667, 4/6 ligands), AR
-(0.25, 2/8 ligands), CB2 (0.6667, 4/6 ligands), CYP19A1 (0.6667, 4/6
-ligands), and ERbeta (1.0, 5/5 ligands). The top-5 ligand overlap is an
-exploratory measure of cross-engine agreement and does not establish
-binding, affinity, predictive accuracy, or experimental validity.</p>
-<p><strong>Conclusion:</strong> The open-source RDKit/Meeko/AutoDock
-Vina protocol demonstrated varying degrees of rank concordance with the
-proprietary MOE method across the five targets. These findings highlight
-the utility of open-source tools for providing a reproducible
-sensitivity analysis of computational drug discovery efforts, while also
-underscoring the impact of docking engine choice and receptor
-preparation on predicted binding profiles.</p>
+      <div class="article-body"><h2 id="abstract">Abstract</h2>
+<p>This study aimed to reproduce and evaluate the concordance of a
+published work on terpene target fishing and molecular docking. The
+original study utilized proprietary MOE GBVI/WSA dG for docking 23
+terpenes across five selected protein targets. For this reproduction, an
+open-source workflow comprising RDKit, Meeko, and AutoDock Vina was
+employed. Target fishing frequencies reported in the original paper for
+CB2, AR, CYP19A1, ERbeta, and 11beta-HSD1 were 18, 15, 13, 11, and 10,
+respectively. Recomputation from unique supplementary consensus rows
+yielded frequencies of 19, 13, 11, 10, and 7. The author-curated target
+fishing set contained 257 normalized pairs, while direct recomputation
+yielded 222 pairs, with 208 overlapping, resulting in a precision of
+0.9369 and recall of 0.8093 against author labels. Notably, beta-myrcene
+was absent from raw prediction rows but present in the author's
+consensus and docking data. Cross-engine docking concordance between
+Vina and MOE, assessed by Spearman rank correlation (rho) and top-five
+ligand overlap, varied across targets: 11beta-HSD1 (rho 0.559, 4/5
+overlap), AR (rho 0.2752, 2/5 overlap), CB2 (rho 0.292, 4/5 overlap),
+CYP19A1 (rho 0.4435, 4/5 overlap), and ERbeta (rho 0.4161, 5/5 overlap).
+The original MOE winner was a known ligand for four targets and bornyl
+acetate for CYP19A1, whereas Vina consistently placed a known ligand
+first for all five. Nerolidol was the top MOE terpene for four targets,
+while alpha-bisabolol was the top Vina terpene for all five. Ligand
+efficiency analysis for CYP19A1 revealed that the original claim of
+terpenes exceeding known ligands was not reproduced by Vina; Vina mean
+ligand efficiencies were 0.642 for monoterpenes, 0.440 for
+sesquiterpenes, and 0.498 for known ligands. An audit of enrichment
+factors highlighted an internal inconsistency in the reference paper's
+reported 0.38 value for 11beta-HSD1 sesquiterpenes at a 100% cutoff,
+which should be 1.0. This reproduction study provides a reproducible
+sensitivity analysis of the original findings, demonstrating that
+computational methodology significantly impacts virtual screening
+outcomes and emphasizing the value of open-source tools for independent
+validation.</p>
 <h2 id="keywords">Keywords</h2>
-<p>Terpenes, molecular docking, AutoDock Vina, MOE, reproduction study,
-rank correlation, ligand efficiency, cannabinoid receptor 2, androgen
-receptor, cytochrome P450 19A1, estrogen receptor beta,
-11-beta-hydroxysteroid dehydrogenase 1.</p>
+<p>Terpenes, Molecular Docking, AutoDock Vina, MOE, Reproducibility,
+Target Fishing, Ligand Efficiency, Cannabinoid Receptor 2, Androgen
+Receptor, CYP19A1, Estrogen Receptor Beta, 11beta-HSD1</p>
 <h2 id="introduction">Introduction</h2>
-<p>The cannabis plant produces a rich array of secondary metabolites,
-among which terpenes are prominent for their diverse biological
-activities and contributions to the plant's aroma and flavor [1]. Beyond
-their sensory roles, terpenes have garnered significant scientific
-interest due to their potential therapeutic applications, including
-anti-inflammatory, anxiolytic, and anti-cancer effects [2,3].
-Understanding the molecular mechanisms underlying these effects often
-involves identifying and characterizing the interactions between
-terpenes and specific biological targets, such as G-protein coupled
-receptors, nuclear receptors, and enzymes.</p>
-<p>Computational approaches, particularly molecular docking, offer a
-cost-effective and efficient means to predict these ligand-target
-interactions. Molecular docking simulates the binding of small molecules
-(ligands) into the active site of a macromolecular target, providing
-insights into potential binding modes and relative binding affinities. A
-previous study employed proprietary MOE software for a comprehensive
-analysis, including target fishing and molecular docking of 23 terpenes
-against a panel of five key biological targets. Given the importance of
-reproducibility and accessibility in scientific research, this work aims
-to re-evaluate the docking component of that study using a fully
-open-source and transparent computational workflow. Our objective is to
-assess the rank concordance between the open-source AutoDock Vina
-results and the proprietary MOE results, thereby providing a sensitivity
-analysis of the original findings under different computational
-methodologies.</p>
-<h2 id="materials-and-methods">Materials and Methods</h2>
+<p>Computational methods, particularly molecular docking and target
+fishing, play a crucial role in modern drug discovery and lead
+optimization. These techniques enable the prediction of ligand-protein
+interactions and potential therapeutic targets for small molecules.
+However, the reproducibility of computational studies, especially those
+relying on proprietary software and undocumented protocols, remains a
+significant challenge. Ensuring the transparency and verifiability of
+such analyses is paramount for scientific rigor and the advancement of
+chemical biology.</p>
+<p>Terpenes, a diverse class of organic compounds abundant in cannabis
+and other plants, have garnered increasing interest due to their wide
+array of pharmacological activities. Understanding their molecular
+interactions with various biological targets is essential for
+elucidating their therapeutic potential. A recent study investigated the
+target fishing and molecular docking of 23 terpenes across a panel of
+five key protein targets using proprietary MOE software.</p>
+<p>This reproduction study aims to provide an independent, open-source
+sensitivity analysis of the findings reported in the reference
+manuscript by Hegde et al. [1]. Our objective is to recapitulate the
+study's design using publicly available tools (RDKit, Meeko, and
+AutoDock Vina) and compare the resulting ligand rankings, ligand
+efficiencies, and target fishing consensus with the original proprietary
+MOE GBVI/WSA dG results. This effort distinguishes between design
+recapitulation, source-table reconstruction, and cross-engine numerical
+replication, contributing to the broader discussion on reproducibility
+in computational chemistry.</p>
+<h2 id="materials-and-methods">Materials And Methods</h2>
 <h3 id="study-design">Study Design</h3>
-<p>This reproduction study focused on the molecular docking component of
-the original research. The primary goal was to compare the ranking of
-ligands by an open-source docking engine (AutoDock Vina) against the
-rankings reported from the proprietary MOE software for a shared set of
-terpenes and control ligands across five protein targets. Due to the
-unavailability of row-level outputs from the four target-fishing engines
-used in the original study, it was not possible to recompute
-target-fishing consensus, TF+/TF- enrichment, or tool ablation
-analyses.</p>
-<h3 id="ligand-and-target-selection">Ligand and Target Selection</h3>
-<p>The study utilized the same panel of 23 terpenes and a set of known
-control ligands for each target as in the original study. The five
-protein targets investigated were:</p>
-<ul>
-<li>Cannabinoid Receptor 2 (CB2, PDB ID: 6KPF, UniProt ID: P34972)</li>
-<li>Androgen Receptor (AR, PDB ID: 3V49, UniProt ID: P10275)</li>
-<li>Cytochrome P450 19A1 (CYP19A1, PDB ID: 3EQM, UniProt ID:
-P11511)</li>
-<li>Estrogen Receptor Beta (ERbeta, PDB ID: 1L2J, UniProt ID:
-Q92731)</li>
-<li>11-beta-Hydroxysteroid Dehydrogenase 1 (11beta-HSD1, PDB ID: 1XU7,
-UniProt ID: P28845)</li>
-</ul>
-<p>For each target, the co-crystal ligand, along with high-affinity and
-low-affinity GtoPdb ligands, were included as controls.</p>
-<h3 id="receptor-and-ligand-preparation">Receptor and Ligand
-Preparation</h3>
-<p>Protein structures were retrieved from the RCSB Protein Data Bank
-(PDB). Receptor preparation for docking was performed using Meeko
-(version 0.7.1) with PDBFixer (version 1.12.0) for initial repair steps.
-Missing atoms and hydrogens were added, and protonation states were
-assigned at pH 7.4. Unresolved residue segments were recorded but not
-modeled. Heterogens were excluded from PDBFixer and restored unchanged
-after protein repair. A restrained local OpenMM minimization was
-performed for relaxation, with parameters and energies recorded in the
-repair audit.</p>
-<p>A specific deviation occurred during the preparation of the ERbeta
-receptor (PDB ID: 1L2J). PDBFixer output for 1L2J created a residue
-valence conflict in Meeko 0.7.1. To proceed, observed chain-A
-coordinates were passed directly to Meeko, and Meeko was allowed to
-exclude observed residues that could not match a complete chemical
-template. Consequently, missing atoms and unresolved segments were not
-modeled for ERbeta.</p>
-<p>Ligand 3D structures were generated using RDKit ETKDGv3 and prepared
-for AutoDock Vina using Meeko.</p>
+<p>The reproduction study followed the overall design of the reference
+manuscript [1], focusing on a panel of 23 terpenes and five selected
+protein targets: Cannabinoid Receptor 2 (CB2, PDB ID: 6KPF), Androgen
+Receptor (AR, PDB ID: 3V49), Cytochrome P450 19A1 (CYP19A1, PDB ID:
+3EQM), Estrogen Receptor Beta (ERbeta, PDB ID: 1L2J), and
+11-beta-hydroxysteroid dehydrogenase 1 (11beta-HSD1, PDB ID: 1XU7). The
+study included co-crystal ligands, as well as high- and low-affinity
+ligands from GtoPdb, as controls for each target.</p>
+<h3 id="target-fishing">Target Fishing</h3>
+<p>The target fishing analysis in the original study utilized four
+independent prediction engines: SwissTargetPrediction, SEA, STarFish,
+and PPB2. A ligand-target pair was considered a consensus prediction if
+it was predicted by at least a minimum number of independent engines.
+Raw prediction rows from the author's supplementary information 1 were
+used to recompute consensus predictions.</p>
 <h3 id="molecular-docking">Molecular Docking</h3>
-<p>Molecular docking was performed using AutoDock Vina (version 1.2.7)
-with the Vina scoring function. Docking boxes were derived from the
-co-crystallized ligand in each PDB structure, with a padding of 5 Å. An
-exhaustiveness of 4 and 3 poses were requested per ligand. A single seed
-(20260717) was used for all docking calculations. Each receptor batch of
-26 ligands was docked serially on one CPU.</p>
+<p><strong>Receptor Preparation:</strong> For each target, the protein
+structure was retrieved from the RCSB Protein Data Bank. Receptors were
+prepared using Meeko version 0.7.1. PDBFixer version 1.12.0 was used to
+add missing atoms and hydrogens at pH 7.4. Heterogens were excluded from
+PDBFixer processing and restored unchanged. Local OpenMM minimization
+with restraints was applied for relaxation. A specific deviation
+occurred for ERbeta (PDB ID: 1L2J): PDBFixer output created a residue
+valence conflict in Meeko 0.7.1, so observed chain-A coordinates were
+passed directly to Meeko, which excluded incomplete residues that could
+not match a complete chemical template. The reference ligand from the
+co-crystal structure was removed, and a padding of 5 Å was applied to
+define the docking box.</p>
+<p><strong>Ligand Preparation:</strong> The 23 terpenes and control
+ligands were prepared using RDKit ETKDGv3 for conformer generation and
+Meeko for atom typing and charge assignment.</p>
+<p><strong>Docking Engine:</strong> AutoDock Vina version 1.2.7 with the
+Vina scoring function was used for all docking calculations. The
+exhaustiveness parameter was set to 4, and 3 poses were requested per
+ligand. A consistent random seed (20260717) was used for all runs.</p>
+<p><strong>Computational Execution:</strong> A total of 130 docking jobs
+were executed. The computations were performed on Google Cloud Run Jobs
+using the <code>terpedia-cheminformatics</code> tool version 1.1.0
+(container digest
+<code>sha256:95e3067ff1592f17200b72852e9f5e92ef9f1a782f1a960259f5c9b096c1eec6</code>).
+This execution strategy involved preparing each receptor once and
+docking its 26-ligand batch serially on one CPU, with the service
+scaling to zero between runs. This represents a low-cost rank and
+enrichment robustness check.</p>
 <h3 id="data-analysis">Data Analysis</h3>
-<p>For each target, the Vina docking scores (kcal/mol) were obtained.
-Ligand efficiency (LE) was calculated as the absolute Vina score
-magnitude divided by the number of heavy atoms. Rank concordance between
-the Vina and reference MOE docking results was quantified using the
-Spearman rank correlation coefficient. Additionally, the overlap of the
-top-5 ranked ligands from both methods was assessed using the Jaccard
-index. The Vina and MOE scores were not compared for magnitude, only for
-their relative rankings.</p>
-<h3 id="execution-provenance-and-cost">Execution Provenance and
-Cost</h3>
-<p>The computational experiments were executed on Google Cloud Run Jobs,
-identified as a server tool fallback runtime, as the preferred Google
-Colab runtime was not used for the docking calculations. The container
-digest for the <code>terpedia-cheminformatics</code> software was
-<code>sha256:95e3067ff1592f17200b72852e9f5e92ef9f1a782f1a960259f5c9b096c1eec6</code>.
-The total estimated list price for all docking runs was 0.0387 USD.</p>
+<p>The primary analysis focused on comparing the independent AutoDock
+Vina results with the reference MOE GBVI/WSA dG results. This comparison
+was based solely on within-target ligand ranks and top-set overlap, as
+score magnitudes are not numerically comparable across different docking
+engines. Key metrics included:</p>
+<ul>
+<li><strong>Spearman Rank Correlation (rho):</strong> To assess the
+correlation of ligand rankings between Vina and MOE for each
+target.</li>
+<li><strong>Top-N Overlap:</strong> The number of shared ligands within
+the top 5 ranked compounds for each target.</li>
+<li><strong>Ligand Efficiency:</strong> Defined as the absolute Vina
+score magnitude divided by the number of heavy atoms in the ligand.</li>
+<li><strong>Enrichment Factor (EF):</strong> Calculated to evaluate the
+ability of the docking protocol to prioritize known active ligands and
+TF-positive terpenes.</li>
+</ul>
 <h2 id="results">Results</h2>
-<p>A total of 130 Vina docking observations were successfully generated
-across the five targets. These observations included 23 terpenes and 3
-control ligands for each of the five targets. Comparisons were made for
-129 shared ligand-target pairs between the newly computed Vina docking
-results and the reference MOE docking results.</p>
-<p>The per-target Spearman rank correlation coefficients between Vina
-and MOE docking results were:</p>
-<ul>
-<li><strong>11beta-HSD1:</strong> 0.559 (moderate)</li>
-<li><strong>AR:</strong> 0.2752 (low)</li>
-<li><strong>CB2:</strong> 0.292 (low)</li>
-<li><strong>CYP19A1:</strong> 0.4435 (modest)</li>
-<li><strong>ERbeta:</strong> 0.4161 (modest)</li>
-</ul>
-<p>The top-5 ligand overlaps, quantified by the Jaccard index, were:</p>
-<ul>
-<li><strong>11beta-HSD1:</strong> 0.6667 (4 out of 6 ligands in common)
-<ul>
-<li>Current Top 5: enoxolone, CHAPS, AZD4017, alpha-bisabolol, bornyl
-acetate</li>
-<li>Reference Top 5: CHAPS, AZD4017, enoxolone, nerolidol,
-alpha-bisabolol</li>
-</ul></li>
-<li><strong>AR:</strong> 0.25 (2 out of 8 ligands in common)
-<ul>
-<li>Current Top 5: flutamide, alpha-bisabolol, nerolidol, R-carvone,
-perillyl alcohol</li>
-<li>Reference Top 5: CHEMBL2177238, flutamide, testosterone propionate,
-nerolidol, bornyl acetate</li>
-</ul></li>
-<li><strong>CB2:</strong> 0.6667 (4 out of 6 ligands in common)
-<ul>
-<li>Current Top 5: E3R, AM10257, ibipinabant, alpha-bisabolol, bornyl
-acetate</li>
-<li>Reference Top 5: AM10257, ibipinabant, E3R, nerolidol,
-alpha-bisabolol</li>
-</ul></li>
-<li><strong>CYP19A1:</strong> 0.6667 (4 out of 6 ligands in common)
-<ul>
-<li>Current Top 5: androstenedione, testolactone, letrozole,
-alpha-bisabolol, nerolidol</li>
-<li>Reference Top 5: bornyl acetate, nerolidol, alpha-bisabolol,
-letrozole, androstenedione</li>
-</ul></li>
-<li><strong>ERbeta:</strong> 1.0 (5 out of 5 ligands in common)
-<ul>
-<li>Current Top 5: R,R-THC, 4-hydroxytamoxifen, ospemifene,
-alpha-bisabolol, nerolidol</li>
-<li>Reference Top 5: 4-hydroxytamoxifen, ospemifene, R,R-THC, nerolidol,
-alpha-bisabolol</li>
-</ul></li>
-</ul>
-<p>The ligand efficiency for each docked ligand was calculated as the
-absolute Vina score magnitude divided by its heavy-atom count. For
-example, for AZD4017 at 11beta-HSD1, with a Vina score of -8.956
-kcal/mol and 29 heavy atoms, the ligand efficiency was 0.3088. For CHAPS
-at 11beta-HSD1, with a Vina score of -9.108 kcal/mol and 42 heavy atoms,
-the ligand efficiency was 0.2169.</p>
+<h3 id="target-fishing-reproducibility">Target Fishing
+Reproducibility</h3>
+<p>The target fishing analysis revealed material discrepancies between
+the reported frequencies in the reference paper and those recomputed
+from the unique supplementary consensus rows. The reported frequencies
+for CB2, AR, CYP19A1, ERbeta, and 11beta-HSD1 were 18, 15, 13, 11, and
+10, respectively. In contrast, the recomputed unique supplementary
+consensus rows yielded frequencies of 19, 13, 11, 10, and 7 for the same
+targets.</p>
+<p>The author-curated consensus set contained 257 normalized
+ligand-target pairs. Direct recomputation of consensus from the raw
+prediction rows resulted in 222 pairs. Comparing these two sets, 208
+pairs overlapped, yielding a precision of 0.9369 and a recall of 0.8093
+against the author's labels. A notable observation is the absence of
+beta-myrcene from the raw prediction rows, despite its presence in the
+author's consensus and docking data.</p>
+<h3 id="cross-engine-docking-concordance">Cross-Engine Docking
+Concordance</h3>
+<p>A comparison of the AutoDock Vina docking results with the reference
+MOE GBVI/WSA dG results, based on within-target ligand ranks and
+top-five overlap, is summarized in Table 1.</p>
+<p><strong>Table 1: Cross-Engine Docking Concordance (Vina vs.
+MOE)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Spearman Rho</th>
+<th>Top-5 Overlap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11beta-HSD1</td>
+<td>0.559</td>
+<td>4/5</td>
+</tr>
+<tr>
+<td>AR</td>
+<td>0.2752</td>
+<td>2/5</td>
+</tr>
+<tr>
+<td>CB2</td>
+<td>0.292</td>
+<td>4/5</td>
+</tr>
+<tr>
+<td>CYP19A1</td>
+<td>0.4435</td>
+<td>4/5</td>
+</tr>
+<tr>
+<td>ERbeta</td>
+<td>0.4161</td>
+<td>5/5</td>
+</tr>
+</tbody>
+</table>
+<p>For the top-ranked ligands, the original MOE analysis identified a
+known ligand as the top binder for four of the five targets
+(11beta-HSD1, AR, CB2, ERbeta), with bornyl acetate being the top ligand
+for CYP19A1. In contrast, the Vina reproduction consistently placed a
+known ligand first for all five targets. Among the terpenes, nerolidol
+was identified as the top MOE terpene for four targets, while
+alpha-bisabolol emerged as the top Vina terpene for all five
+targets.</p>
+<h3 id="ligand-efficiency-analysis">Ligand Efficiency Analysis</h3>
+<p>The ligand efficiency analysis for CYP19A1 demonstrated a notable
+difference from the original study's claims. The original paper
+suggested that every terpene exceeded every known ligand in terms of
+ligand efficiency for CYP19A1. However, the Vina reproduction did not
+support this claim. The mean ligand efficiencies calculated from the
+Vina scores for CYP19A1 were 0.642 for monoterpenes, 0.440 for
+sesquiterpenes, and 0.498 for known ligands.</p>
+<h3 id="enrichment-factor-audit">Enrichment Factor Audit</h3>
+<p>A critical audit of the enrichment factor (EF) definition revealed an
+internal inconsistency in the reference paper. Under the stated EF
+definition, the EF at a 100 percent cutoff must theoretically equal 1.0.
+However, the paper reported an EF of 0.38 for 11beta-HSD1 sesquiterpenes
+at a 100% cutoff, which is inconsistent with the definition and
+therefore not considered valid in this reproduction.</p>
 <h2 id="discussion">Discussion</h2>
-<p>This study aimed to provide a reproducible sensitivity analysis of a
-prior molecular docking investigation of terpenes by replacing a
-proprietary docking engine (MOE) with an open-source alternative
-(AutoDock Vina). The results indicate varying degrees of rank
-concordance between the two docking methodologies across the five
-selected protein targets.</p>
-<p>The Spearman rank correlation coefficients ranged from low (AR:
-0.2752, CB2: 0.292) to modest (ERbeta: 0.4161, CYP19A1: 0.4435) and
-moderate (11beta-HSD1: 0.559). These correlations suggest that while
-there is some agreement in ligand ranking between MOE and Vina, the
-extent of this agreement is highly target-dependent. It is important to
-note that these correlations reflect the consistency of ranking, not the
-numerical equivalence of the docking scores, which are derived from
-different scoring functions and are not directly comparable in
-magnitude.</p>
-<p>The top-5 ligand overlap analysis provides an exploratory measure of
-cross-engine agreement for the highest-ranked ligands. While ERbeta
-showed a perfect Jaccard index of 1.0, indicating identical top-5
-ligands, this finding must be interpreted with caution due to a known
-deviation in the ERbeta receptor preparation protocol. For other
-targets, the overlaps were also substantial (e.g., 11beta-HSD1, CB2,
-CYP19A1 all at 0.6667), suggesting that despite differences in scoring
-functions and preparation methods, the two engines can identify some
-common high-ranking ligands. However, top-five overlap is an exploratory
-cross-engine agreement and does not establish binding, affinity,
-predictive accuracy, or experimental validity. The discrepancies
-observed, particularly the lower overlap for AR, highlight the
-sensitivity of docking results to the specific algorithms and parameters
-employed.</p>
-<p>The calculation of ligand efficiency provides a normalized metric for
-comparing ligand potency irrespective of size. This metric, defined as
-the absolute Vina score magnitude divided by the heavy-atom count,
-allows for a more equitable comparison of ligands, especially when
-dealing with a diverse set like terpenes.</p>
-<p>Overall, this reproduction study demonstrates that an open-source
-workflow can provide valuable insights into the robustness and
-sensitivity of computational docking predictions. The observed rank
-concordances, ranging from low to moderate, underscore the importance of
-considering methodological choices in molecular docking studies and the
-need for careful interpretation of results, especially when comparing
-across different software platforms.</p>
+<p>This reproduction study provides a sensitivity analysis of the target
+fishing and molecular docking results presented in the reference
+manuscript [1], using an open-source computational workflow. The
+findings highlight both areas of concordance and significant differences
+when comparing results from proprietary MOE software with those from
+RDKit/Meeko/AutoDock Vina.</p>
+<p>The observed Spearman rank correlations between the two docking
+engines range from low (AR: 0.2752, CB2: 0.292) to modest (ERbeta:
+0.4161, CYP19A1: 0.4435) and moderate (11beta-HSD1: 0.559). This
+suggests that while there is some agreement in the overall ranking of
+ligands, particularly for 11beta-HSD1, the specific order and relative
+potency predictions can vary considerably depending on the docking
+engine and its underlying scoring function. The top-five overlap
+analysis serves as an exploratory measure of cross-engine agreement,
+indicating the extent to which the most promising candidates are
+consistently identified. However, it is important to note that this
+overlap does not establish experimental binding affinity, predictive
+accuracy, or biological validity.</p>
+<p>The differences in the top-ranked ligands and the ligand efficiency
+analysis for CYP19A1 underscore the methodological sensitivity of
+virtual screening campaigns. The original claim regarding terpene ligand
+efficiency for CYP19A1 was not reproduced by the Vina workflow,
+suggesting that the choice of docking software and scoring function can
+profoundly influence the interpretation of results, particularly for
+novel chemical spaces like terpenes.</p>
+<p>The target fishing reproducibility section revealed material
+discrepancies in target frequencies and consensus predictions. The
+absence of beta-myrcene from the raw prediction rows, despite its
+inclusion in the author's consensus and docking, points to potential
+data handling or reporting inconsistencies in the original supplementary
+materials. These findings emphasize the importance of transparent and
+fully accessible raw data for complete reproducibility.</p>
 <h2 id="limitations">Limitations</h2>
-<p>Several limitations are present in this reproduction study. Firstly,
-the unavailability of row-level outputs from the four target-fishing
-engines used in the original study prevented the recomputation of
-target-fishing consensus, TF+/TF- enrichment, and tool ablation
-analyses. This restricted the scope of the reproduction to only the
-molecular docking component.</p>
-<p>Secondly, a specific deviation occurred during the preparation of the
-ERbeta receptor (PDB ID: 1L2J). Due to a residue valence conflict with
-PDBFixer output in Meeko 0.7.1, observed chain-A coordinates were passed
-directly to Meeko, and Meeko was allowed to exclude incomplete residues
-that could not match a chemical template. Consequently, missing atoms
-and unresolved segments were not modeled for ERbeta, which may influence
-the docking results for this specific target.</p>
-<p>Finally, while this study provides a sensitivity analysis of ligand
-ranking between two different docking engines, the results do not
-establish experimental binding, affinity, or predictive accuracy.
-Molecular docking is a computational prediction method, and its outputs
-require experimental validation.</p>
-<h2 id="conclusions">Conclusions</h2>
-<p>This study successfully reproduced the molecular docking component of
-a previous terpene investigation using an open-source
-RDKit/Meeko/AutoDock Vina workflow. A total of 130 Vina docking
-observations were generated, and 129 shared ligand-target pairs were
-compared with reference MOE results. Spearman rank correlations between
-Vina and MOE docking results ranged from low (AR: 0.2752, CB2: 0.292) to
-modest (ERbeta: 0.4161, CYP19A1: 0.4435) and moderate (11beta-HSD1:
-0.559). Top-5 ligand overlaps also varied, with ERbeta showing a perfect
-overlap (1.0, 5/5 ligands) despite a receptor preparation deviation.
-This work demonstrates the utility of open-source tools for performing
-reproducible sensitivity analyses in computational drug discovery,
-highlighting the influence of methodological choices on predicted
-binding profiles.</p>
+<p>This reproduction study has several limitations. The primary
+limitation is that numerical values of docking scores from the
+proprietary MOE GBVI/WSA dG method are not directly comparable with
+those from AutoDock Vina. Therefore, comparisons were restricted to
+ligand ranks and top-set overlaps. While row-level records from all four
+target-fishing tools were available and Terpedia computed
+leave-one-tool-out ablation, the target-fishing analysis was limited by
+the disagreement between author-curated and directly recomputed
+consensus, uneven tool coverage, and unresolved source-label
+reconciliation. The absence of beta-myrcene from the raw prediction
+rows, despite its presence in the author's consensus and docking,
+represents a data gap. Furthermore, the receptor preparation for ERbeta
+involved a deviation from the standard protocol due to a residue valence
+conflict in Meeko 0.7.1, which may impact the generalizability of
+results for this specific target. The top-five overlap is an exploratory
+measure of cross-engine agreement and does not establish binding,
+affinity, predictive accuracy, or experimental validity.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This reproduction study successfully implemented an open-source
+RDKit/Meeko/AutoDock Vina workflow to re-evaluate the target fishing and
+molecular docking of terpenes as presented in the reference manuscript.
+The workflow provides a reproducible sensitivity analysis of the
+original proprietary MOE GBVI/WSA dG results. While a moderate rank
+concordance was observed for 11beta-HSD1 (Spearman rho 0.559) and modest
+concordance for ERbeta (Spearman rho 0.4161) and CYP19A1 (Spearman rho
+0.4435), lower correlations were found for AR (Spearman rho 0.2752) and
+CB2 (Spearman rho 0.292). Significant differences were identified in
+top-ranked ligands, ligand efficiency for CYP19A1, and target fishing
+consensus. These findings collectively underscore the critical impact of
+computational methodology on virtual screening outcomes and highlight
+the value of open-source tools for conducting independent sensitivity
+analyses and fostering greater transparency in computational drug
+discovery.</p>
 <h2 id="data-availability">Data Availability</h2>
-<p>The research data, including the executed low-compute study records
-and the Google Colab notebook (revision 4), are available in a private
-GitHub repository and a content-addressed Google Colab notebook.</p>
-<ul>
-<li><strong>GitHub Repository:</strong>
-<code>https://github.com/Terpedia/terpedia-reproduce-the-research-in-the-attached-reference-manusc-be6fa4a4</code></li>
-<li><strong>Colab Notebook URL:</strong>
-<code>https://colab.research.google.com/github/Terpedia/terpedia-reproduce-the-research-in-the-attached-reference-manusc-be6fa4a4/blob/main/notebooks/study_be6fa4a4-c9eb-45e6-916e-aec999992e4f-reproducibility-r4.ipynb</code></li>
-<li><strong>Research Snapshot SHA256:</strong>
-<code>4c08c84feac979e8ba665156a6b8f42c10c7ef741f3912a89b3b5b0ea2e2ee33</code></li>
-<li><strong>Notebook Content SHA256:</strong>
-<code>5d5787b35deade1dee2f6d8d7a895947458e15be361de50bc39890e53ffbfee0</code></li>
-<li><strong>Study Bundle SHA256:</strong>
-<code>95c61eae810bc51d6721dfc29ea7703807608bedeb43a202a02156271f580f79</code></li>
-<li><strong>Total Estimated Compute Cost:</strong> 0.0387 USD.</li>
-<li><strong>Execution Platform:</strong> Google Cloud Run Jobs (server
-tool fallback runtime) for docking calculations.</li>
-</ul>
+<p>The data and computational artifacts supporting this study are
+available in the Terpedia research repository:
+<code>https://github.com/Terpedia/terpedia-reproduce-the-research-in-the-attached-reference-manusc-be6fa4a4</code>.
+The specific study bundle has a SHA-256 checksum of
+<code>cc88f76d5c344e64dc85f5210adca14bb9a6dac53b6d7421a790a38730d14020</code>.
+The complete reproducibility notebook, including all code and analysis,
+is publicly available at:
+<code>https://colab.research.google.com/github/Terpedia/terpedia-research-papers/blob/main/docs/papers/terpene-docking-reproduction/notebooks/reproducibility.ipynb</code>.
+The notebook content SHA-256 is
+<code>d863b529d17d85034e6af6f9a430526a23127d80fbe9600fa9f89d1c6786d52f</code>,
+and the underlying research snapshot SHA-256 is
+<code>a0f2569040758f879017e98239620e7a280b83b1830c73f5d3a74545f5b7e325</code>.
+The Terpedia chemistry service version used for this analysis was 1.2.0.
+Docking calculations were performed on Google Cloud Run Jobs using the
+<code>terpedia-cheminformatics</code> tool version 1.1.0, with a
+container digest of
+<code>sha256:95e3067ff1592f17200b72852e9f5e92ef9f1a782f1a960259f5c9b096c1eec6</code>.</p>
 <h2 id="ai-disclosure">AI Disclosure</h2>
-<p>This manuscript was authored and revised by the Terpedia Editor
-Agent, GPT-420, an AI assistant. The agent utilized supplied study
-records, a research notebook, and specific editorial instructions to
-generate and refine the content, ensuring adherence to scientific
-reporting standards and preservation of data provenance.</p>
+<p>This manuscript was generated and edited by the Terpedia Editor
+Agent, an AI system, with engineering assistance from Codex.</p>
 <h2 id="references">References</h2>
-<p>[1] Placeholder citation 1 [2] Placeholder citation 2 [3] Placeholder
-citation 3</p></div>
+<p>[1] Hegde M, Ahmadi A, McShan D, Trapp S, Baudry J. Supplied
+manuscript, version received 2026.</p></div>
     </article>
     <aside class="paper-aside" aria-label="Publication details">
       <div class="aside-panel">
@@ -355,7 +347,7 @@ citation 3</p></div>
           <dt>Observations</dt><dd>130 Vina docking results</dd>
           <dt>Comparisons</dt><dd>129 shared ligand-target pairs</dd>
           <dt>Compute cost</dt><dd>Estimated &#36;0.0387 USD</dd>
-          <dt>Notebook SHA-256</dt><dd><code>5d5787b35deade1d...</code></dd>
+          <dt>Notebook SHA-256</dt><dd><code>d863b529d17d8503...</code></dd>
         </dl>
         <a class="colab-link" href="https://colab.research.google.com/github/Terpedia/terpedia-research-papers/blob/main/docs/papers/terpene-docking-reproduction/notebooks/reproducibility.ipynb">Open in Colab</a>
         <div class="downloads" aria-label="Downloads">
