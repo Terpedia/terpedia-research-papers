@@ -1,0 +1,41 @@
+{
+  "schema": "terpedia-hq-docking-execution-receipt/v1",
+  "run_id": "hq-shortlist-cb2-20260718",
+  "execution_status": "completed",
+  "target": {"short_name": "CB2", "name": "Cannabinoid receptor 2", "pdb_id": "6KPF", "uniprot_id": "P34972"},
+  "ligand_panel": {"terpenes": 7, "controls": 3, "labels": ["nerolidol", "alpha-bisabolol", "humulene", "caryophyllene oxide", "beta-caryophyllene", "linalool", "bornyl acetate", "E3R", "AM10257", "ibipinabant"]},
+  "protocol": {"scoring_functions": ["vina", "vinardo"], "seeds": [20260717, 20260718, 20260719, 20260720, 20260721], "exhaustiveness": 32, "poses": 10, "redocking_threshold_angstrom": 2.0, "ranking": "Mean rank of per-scoring-function median scores; score magnitudes are not mixed across functions."},
+  "validation": {
+    "passed": true,
+    "passing_runs": 3,
+    "required_runs": 3,
+    "median_rmsd_angstrom": 1.3432,
+    "minimum_rmsd_angstrom": 1.3177,
+    "maximum_rmsd_angstrom": 8.2603,
+    "seed_results": [
+      {"seed": 20260717, "passed": false, "rmsd_angstrom": 8.2603},
+      {"seed": 20260718, "passed": true, "rmsd_angstrom": 1.3317},
+      {"seed": 20260719, "passed": true, "rmsd_angstrom": 1.3177},
+      {"seed": 20260720, "passed": true, "rmsd_angstrom": 1.3432},
+      {"seed": 20260721, "passed": false, "rmsd_angstrom": 8.0612}
+    ]
+  },
+  "consensus_results": [
+    {"ligand": "E3R", "consensus_mean_rank": 1.5, "vina_median": -10.609, "vina_stdev": 0.3194, "vinardo_median": -9.019, "vinardo_stdev": 0.9413},
+    {"ligand": "AM10257", "consensus_mean_rank": 2.5, "vina_median": -10.71, "vina_stdev": 0.0948, "vinardo_median": -7.117, "vinardo_stdev": 0.375},
+    {"ligand": "alpha-bisabolol", "consensus_mean_rank": 3.0, "vina_median": -8.517, "vina_stdev": 0.036, "vinardo_median": -7.804, "vinardo_stdev": 0.2498},
+    {"ligand": "ibipinabant", "consensus_mean_rank": 4.5, "vina_median": -9.888, "vina_stdev": 0.3018, "vinardo_median": -5.997, "vinardo_stdev": 0.6927},
+    {"ligand": "nerolidol", "consensus_mean_rank": 4.5, "vina_median": -7.711, "vina_stdev": 0.0925, "vinardo_median": -7.276, "vinardo_stdev": 0.171},
+    {"ligand": "bornyl acetate", "consensus_mean_rank": 5.0, "vina_median": -7.83, "vina_stdev": 0.0127, "vinardo_median": -6.536, "vinardo_stdev": 0.0062},
+    {"ligand": "beta-caryophyllene", "consensus_mean_rank": 7.5, "vina_median": -6.596, "vina_stdev": 0.5012, "vinardo_median": -4.881, "vinardo_stdev": 0.4766},
+    {"ligand": "linalool", "consensus_mean_rank": 8.0, "vina_median": -6.232, "vina_stdev": 0.1058, "vinardo_median": -5.856, "vinardo_stdev": 0.2195},
+    {"ligand": "caryophyllene oxide", "consensus_mean_rank": 9.0, "vina_median": -6.352, "vina_stdev": 0.0928, "vinardo_median": -4.106, "vinardo_stdev": 0.0326},
+    {"ligand": "humulene", "consensus_mean_rank": 9.5, "vina_median": -5.844, "vina_stdev": 0.2315, "vinardo_median": -4.477, "vinardo_stdev": 0.5439}
+  ],
+  "preparation": {"rdkit": "2025.09.5", "pdbfixer": "1.12.0", "meeko": "0.7.1", "chain": "R", "prepared_atoms": 2250, "reference_ligand": {"residue_name": "E3R", "chain": "R", "residue_number": 401}, "pH": 7.4},
+  "receptor_source": {"pdb_url": "https://files.rcsb.org/download/6KPF.pdb", "structure_url": "https://www.rcsb.org/structure/6KPF", "retrieved_at": "2026-07-18T12:29:27.789746+00:00"},
+  "gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-shortlist-cb2-20260718/CB2.json",
+  "artifact_sha256": "641018e7c2d7b137102f0511e9d171d99db91fd2fb105404844dfb41048707ab",
+  "provenance": {"operation": "dock_hq_batch", "service_version": "1.1.0", "rdkit_version": "2025.09.5", "computed_at": "2026-07-18T13:20:19.003545+00:00", "computation_ms": 3052217.57},
+  "interpretation": "CB2 passed the validation gate and generated a validated ten-member shortlist. This is one target only; it does not establish a full-panel reproduction, affinity, binding, safety, or clinical efficacy."
+}
