@@ -40,5 +40,5 @@ jobs:
         with:
           name: terpene-docking-end-to-end-rerun-${{ github.sha }}
           path: |
-            executed-end-to-end-rerun.ipynb
-            .terpedia-runtime/terpedia-end-to-end-results/*.json
+            docs/papers/terpene-docking-reproduction/notebooks/executed-end-to-end-rerun.ipynb
+            docs/papers/terpene-docking-reproduction/notebooks/.terpedia-runtime/terpedia-end-to-end-results/*.json
