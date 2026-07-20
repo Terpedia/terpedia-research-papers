@@ -1,0 +1,28 @@
+{
+  "schema": "terpedia-hq-study-receipt/v1",
+  "execution_status": "completed_with_scientific_failures",
+  "protocol": {
+    "engine": "AutoDock Vina",
+    "scoring_functions": ["vina", "vinardo"],
+    "seeds": [20260717, 20260718, 20260719, 20260720, 20260721],
+    "exhaustiveness": 32,
+    "poses": 10,
+    "redocking_threshold_angstrom": 2.0,
+    "gate": "Top-ranked Vina pose RMSD <= 2.0 A in at least 3 of 5 seeds"
+  },
+  "targets": [
+    {"target": "CB2", "pdb_id": "6KPF", "status": "completed", "validation": "passed", "passing_runs": 3, "required_runs": 3, "median_rmsd_angstrom": 1.309, "candidate_receipt": "execution-receipt-hq-cb2.json"},
+    {"target": "AR", "pdb_id": "3V49", "status": "validation_failed", "validation": "failed", "passing_runs": 2, "required_runs": 3, "median_rmsd_angstrom": 2.1922, "scientific_effect": "Candidate docking blocked; no candidate scores generated."},
+    {"target": "CYP19A1", "pdb_id": "3EQM", "status": "completed", "validation": "passed", "passing_runs": 5, "required_runs": 3, "median_rmsd_angstrom": 0.6576},
+    {"target": "ERbeta", "pdb_id": "1L2J", "status": "failed", "validation": "not_run", "failure_stage": "receptor_preparation", "failure_type": "RDKit AtomValenceException", "scientific_effect": "No redocking pose, RMSD, candidate pose, or docking score was generated."},
+    {"target": "11beta-HSD1", "pdb_id": "1XU7", "status": "failed", "validation": "not_run", "failure_stage": "cofactor_parameterization", "failure_type": "unresolved_residue_template", "scientific_effect": "No redocking pose, RMSD, candidate pose, or docking score was generated; NDP was not removed to force success."}
+  ],
+  "source_artifacts": {
+    "CB2": {"gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-validation-final-20260718/CB2.json", "sha256": "4da5cd5db5e6f7b226b4007e04238870f7828fdd211a205e9105fa4ce8fdc1a1"},
+    "AR": {"gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-validation-final-20260718/AR.json", "sha256": "19e21791e8a5858650889ea7ec243c198f5267521bc0cd1fd64a040c890463d3"},
+    "CYP19A1": {"gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-validation-final-20260718/CYP19A1.json", "sha256": "a15b7517a67355679fc53afd8d60bd8d5d3836376ef2542d1810e11eb4063407"},
+    "ERbeta": {"gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-validation-final-20260718/ERbeta-failure.json", "sha256": "cefe485c3d6721c11e62d711a5a846c06e4ca8b357f53c81e95d843a6bb524d0"},
+    "11beta-HSD1": {"gcs_uri": "gs://terpedia-489015-scientific-results/terpedia-hq-docking/hq-validation-20260718-v3/HSD11B1-failure.json", "sha256": "d585453aca9fc384e28e631ffa994399dc16e826378561c291228f3fbb86e24e"}
+  },
+  "interpretation": "The full five-target validation record is complete and preserves both successful gates and scientific failures. It is not a claim that all five targets produced valid candidate docking scores."
+}

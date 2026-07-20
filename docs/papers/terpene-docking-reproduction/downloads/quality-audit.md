@@ -47,3 +47,7 @@ The current artifact is a useful and reasonably well-provenanced analysis recons
 An end-to-end rerun notebook has been added at `notebooks/end-to-end-rerun.ipynb`. This audit remains C-grade until that notebook completes in a clean Colab session and its JSON receipt is attached to the report; the presence of executable code is not counted as an executed result.
 
 A bounded Cloud Run smoke receipt is available as `execution-receipt-smoke.json`. It confirms the real Linux preparation and Vina execution path for one ligand/target, but it does not satisfy the full-panel validation gate.
+
+A completed asynchronous HQ receipt is available as `execution-receipt-hq-cb2.json`. CB2 passed the 3-of-5 redocking gate and produced a ten-member Vina/Vinardo shortlist with seed dispersion. This materially strengthens the evidence, but one validated target does not support an A-grade full-study reproduction; AR, CYP19A1, ERbeta, and 11beta-HSD1 still require their recorded pass/failure receipts.
+
+The consolidated [HQ study receipt](execution-receipt-hq-study.json) now records all five target outcomes: CB2 and CYP19A1 passed, AR failed the validation gate, and ERbeta/HSD11B1 stopped during preparation. These statuses are complete and provenance-linked, but the public Colab still needs to be executed from a clean session and the manuscript needs to incorporate the consolidated receipt before the grade can be reconsidered.
