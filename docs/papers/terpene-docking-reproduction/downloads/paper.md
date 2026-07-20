@@ -75,7 +75,7 @@ The differences in the top-ranked ligands and the ligand efficiency analysis for
 The target fishing reproducibility section revealed material discrepancies in target frequencies and consensus predictions. The absence of beta-myrcene from the raw prediction rows, despite its inclusion in the author's consensus and docking, points to potential data handling or reporting inconsistencies in the original supplementary materials. These findings emphasize the importance of transparent and fully accessible raw data for complete reproducibility.
 
 ## Reference Figure and Table Reconstruction
-The public Colab executes an analysis reconstruction from the recorded study snapshot; it does not rerun the docking engine from public structures. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.
+The public analysis Colab executes an analysis reconstruction from the recorded study snapshot. A separate [end-to-end rerun Colab](../notebooks/end-to-end-rerun.ipynb) now installs the pinned chemistry environment, runs receptor preparation and validation-gated docking, and writes a machine-readable receipt; its execution must be completed and its receipt attached before the study can claim a complete rerun. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.
 
 | Source display | Terpedia display | Status | Artifact or blocking reason |
 |---|---|---|---|

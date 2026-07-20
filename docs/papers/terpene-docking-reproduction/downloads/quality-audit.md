@@ -43,3 +43,5 @@ This audit evaluates the published Markdown manuscript and its public Google Col
 ## Conclusion
 
 The current artifact is a useful and reasonably well-provenanced analysis reconstruction. It is not yet an A-grade runnable reproduction. Terpedia's quality-audit skill now enforces this distinction and emits a deterministic scorecard for future reports.
+
+An end-to-end rerun notebook has been added at `notebooks/end-to-end-rerun.ipynb`. This audit remains C-grade until that notebook completes in a clean Colab session and its JSON receipt is attached to the report; the presence of executable code is not counted as an executed result.
