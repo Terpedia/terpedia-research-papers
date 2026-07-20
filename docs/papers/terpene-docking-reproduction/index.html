@@ -288,6 +288,15 @@ inclusion in the author’s consensus and docking, points to potential
 data handling or reporting inconsistencies in the original supplementary
 materials. These findings emphasize the importance of transparent and
 fully accessible raw data for complete reproducibility.</p>
+<h2 id="validation-gated-hq-extension">Validation-Gated HQ Extension</h2>
+<p>An asynchronous validation-gated extension used five seeds, exhaustiveness 32, ten poses, separate Vina/Vinardo scoring, and a two-angstrom redocking gate. The consolidated <a href="downloads/execution-receipt-hq-study.json">execution receipt</a> records the complete target-level outcomes.</p>
+<table><thead><tr><th>Target</th><th>PDB</th><th>Status</th><th>Passing seeds</th><th>Median RMSD</th><th>Candidate interpretation</th></tr></thead><tbody>
+<tr><td>CB2</td><td>6KPF</td><td>Passed</td><td>3/5</td><td>1.3090 A</td><td>Validated shortlist generated</td></tr>
+<tr><td>AR</td><td>3V49</td><td>Failed gate</td><td>2/5</td><td>2.1922 A</td><td>Candidate docking blocked</td></tr>
+<tr><td>CYP19A1</td><td>3EQM</td><td>Passed</td><td>5/5</td><td>0.6576 A</td><td>Validated shortlist eligible</td></tr>
+<tr><td>ERbeta</td><td>1L2J</td><td>Preparation failed</td><td>-</td><td>-</td><td>No candidate score</td></tr>
+<tr><td>11beta-HSD1</td><td>1XU7</td><td>Cofactor failure</td><td>-</td><td>-</td><td>No candidate score</td></tr>
+</tbody></table>
 <h2 id="reference-figure-and-table-reconstruction">Reference Figure and Table Reconstruction</h2>
 <p>The public Colab executes an analysis reconstruction from the recorded study snapshot; it does not rerun the docking engine from public structures. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.</p>
 <table><thead><tr><th>Source display</th><th>Terpedia display</th><th>Status</th><th>Artifact or blocking reason</th></tr></thead><tbody>
