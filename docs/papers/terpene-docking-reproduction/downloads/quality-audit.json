@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "research-quality-audit.v1",
+  "score": 80,
+  "grade": "C",
+  "classification": "analysis_reconstruction",
+  "executionStatus": "partial",
+  "blockingFindings": [
+    "The public notebook reconstructs frozen recorded data rather than rerunning docking.",
+    "The public paper must state the partial execution status consistently.",
+    "Uncertainty or replicate treatment is not exposed for the comparative claims."
+  ],
+  "categoryScores": {
+    "scientificValidity": {"score": 25, "maximum": 25},
+    "reproducibility": {"score": 10, "maximum": 25},
+    "provenance": {"score": 20, "maximum": 20},
+    "statisticalAnalysis": {"score": 10, "maximum": 15},
+    "editorialQuality": {"score": 15, "maximum": 15}
+  },
+  "source": "Terpedia deterministic research-quality audit",
+  "auditDate": "2026-07-19"
+}

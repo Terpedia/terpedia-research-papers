@@ -288,6 +288,12 @@ inclusion in the author’s consensus and docking, points to potential
 data handling or reporting inconsistencies in the original supplementary
 materials. These findings emphasize the importance of transparent and
 fully accessible raw data for complete reproducibility.</p>
+<h2 id="reference-figure-and-table-reconstruction">Reference Figure and Table Reconstruction</h2>
+<p>The public Colab executes an analysis reconstruction from the recorded study snapshot; it does not rerun the docking engine from public structures. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.</p>
+<table><thead><tr><th>Source display</th><th>Terpedia display</th><th>Status</th><th>Artifact or blocking reason</th></tr></thead><tbody>
+<tr><td>Table 1</td><td>Table 1</td><td>reproduced</td><td><code>results.xlsx</code> and notebook analysis cells</td></tr>
+<tr><td>Reference figures</td><td>None supplied</td><td>blocked</td><td>Source figure files were not present in the supplied reference package</td></tr>
+</tbody></table>
 <h2 id="limitations">Limitations</h2>
 <p>This reproduction study has several limitations. The primary
 limitation is that numerical values of docking scores from the
@@ -307,9 +313,9 @@ results for this specific target. The top-five overlap is an exploratory
 measure of cross-engine agreement and does not establish binding,
 affinity, predictive accuracy, or experimental validity.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>This reproduction study successfully implemented an open-source
+<p>This study implemented an open-source
 RDKit/Meeko/AutoDock Vina workflow to re-evaluate the target fishing and
-molecular docking of terpenes as presented in the reference manuscript.
+ molecular docking results presented in the reference manuscript. The public notebook is an analysis reconstruction of recorded results, not an end-to-end rerun of the docking experiment.
 The workflow provides a reproducible sensitivity analysis of the
 original proprietary MOE GBVI/WSA dG results. While a moderate rank
 concordance was observed for 11beta-HSD1 (Spearman rho 0.559) and modest
@@ -438,6 +444,8 @@ href="https://github.com/Terpedia/terpedia-research-papers/blob/main/docs/papers
           <a href="downloads/paper.docx">DOCX</a>
           <a href="downloads/results.xlsx">XLSX</a>
           <a href="downloads/paper.md">Markdown</a>
+          <a href="downloads/quality-audit.md">Audit</a>
+          <a href="downloads/quality-audit.json">Audit JSON</a>
         </div>
         <p class="notice">Docking outputs are computational predictions. They do not establish binding, affinity, safety, or clinical efficacy.</p>
       </div>
