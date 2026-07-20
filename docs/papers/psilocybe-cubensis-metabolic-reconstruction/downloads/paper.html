@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-07-19" />
+  <title>Evidence-qualified reconstruction of the Psilocybe cubensis metabolic network from Terpedia</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Evidence-qualified reconstruction of the Psilocybe
+cubensis metabolic network from Terpedia</h1>
+<p class="date">2026-07-19</p>
+</header>
+<h1
+id="evidence-qualified-reconstruction-of-the-psilocybe-cubensis-metabolic-network-from-terpedia">Evidence-qualified
+reconstruction of the <em>Psilocybe cubensis</em> metabolic network from
+Terpedia</h1>
+<h2 id="abstract">Abstract</h2>
+<p>We reconstructed a provenance-linked draft metabolic network for
+<em>Psilocybe cubensis</em> by joining the UniProt UP000664032 reference
+proteome to Rhea reactions and ChEBI chemical participants. The catalog
+contains 826 biochemical reactions and 964 unique ChEBI participants. We
+defined completeness as the fraction of unique reaction reactants
+reachable from a glucose-based fungal defined-medium proxy using a
+forward reaction-hypergraph closure. Twelve of 617 reactants (1.94%) are
+reachable under curated physiological directions; 18 (2.92%) under a
+hybrid mode; and 18 (2.92%) under the fully reversible structural upper
+bound. The reconstruction generates 63 unresolved exact-EC reaction
+hypotheses, 288 missing-producer hypotheses, and 1,007 blocked-known-
+reaction hypotheses, with 855 retaining candidate enzyme/protein
+support. All eight expected Rhea reactions in the curated psilocybin
+subnetwork are represented, but the global network is not a complete
+flux model. Terpedia therefore provides an auditable reaction catalog
+and prioritized hypothesis agenda rather than proof of complete <em>in
+vivo</em> metabolism.</p>
+<p><strong>Keywords:</strong> <em>Psilocybe cubensis</em>; metabolic
+reconstruction; Rhea; ChEBI; psilocybin; pathway inference; Terpedia</p>
+<h2 id="introduction">1. Introduction</h2>
+<p>Genome annotation, reaction representation, metabolite detection, and
+pathway activity are different claims. This study uses Terpedia to
+preserve those distinctions while measuring whether the reaction catalog
+can bootstrap from a defined-medium seed set. The aims were to quantify
+reaction resolution, measure reactant reachability, and generate
+evidence-qualified reaction, enzyme, and gene hypotheses for closing the
+network.</p>
+<h2 id="methods">2. Methods</h2>
+<p>The UniProt UP000664032 reference proteome was joined to Rhea through
+exact EC annotations. Rhea equations were parsed into explicit
+<code>has_reactant</code> and <code>has_product</code> ChEBI edges, with
+molecular formula, structure, balance, candidate compartment,
+transporter, and physiological-direction evidence retained.</p>
+<p>The denominator was every unique ChEBI entity appearing as a reaction
+reactant (617). The seed set was a glucose-based fungal defined-medium
+proxy containing glucose, ammonium, nitrate, phosphate, sulfate,
+chloride, calcium, iron, copper, biotin, water, proton, oxygen, and
+carbon dioxide. Three modes were evaluated: curated directions only;
+curated directions plus unknown reactions reversible; and all reactions
+reversible. Stoichiometry was retained but not interpreted as flux, and
+no biomass, exchange, thermodynamic, or compartment constraints were
+invented.</p>
+<p>Exact-EC proteins without a projected <code>catalyzes</code> edge
+were grouped as unresolved reaction hypotheses. Unreachable metabolites
+with no producer reaction were recorded as missing-producer hypotheses.
+Reactions consuming unreachable metabolites were recorded as
+blocked-known-reaction hypotheses, retaining existing equations and
+enzyme/locus/gene support. No missing reaction equations were
+fabricated.</p>
+<h2 id="results">3. Results</h2>
+<h3 id="catalog">3.1 Catalog</h3>
+<p>The proteome contains 13,113 proteins, 1,107 with exact EC
+annotations (8.44%). The reaction catalog contains 826 Rhea master
+reactions, 772 reactions with directional reaction SMILES, and 964
+unique ChEBI participants. All equations parsed; 489 were
+element-auditable and 582 charge-auditable. The participant graph has 20
+connected components; its largest contains 806 reactions and 937
+metabolites.</p>
+<h3 id="reachability">3.2 Reachability</h3>
+<table>
+<thead>
+<tr>
+<th>Direction mode</th>
+<th style="text-align: right;">Reachable reactants</th>
+<th style="text-align: right;">Denominator</th>
+<th style="text-align: right;">Reachability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curated directions only</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">617</td>
+<td style="text-align: right;">1.94%</td>
+</tr>
+<tr>
+<td>Curated + unknown reversible</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">617</td>
+<td style="text-align: right;">2.92%</td>
+</tr>
+<tr>
+<td>Fully reversible upper bound</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">617</td>
+<td style="text-align: right;">2.92%</td>
+</tr>
+</tbody>
+</table>
+<p>The identical hybrid and reversible values indicate that missing
+entry chemistry and precursor/cofactor closure dominate the gap rather
+than directionality alone.</p>
+<h3 id="hypotheses-and-psilocybin-subnetwork">3.3 Hypotheses and
+psilocybin subnetwork</h3>
+<p>The hypothesis layer contains 63 unresolved exact-EC hypotheses, 288
+metabolites with no producer reaction, and 1,007 blocked-known-reaction
+hypotheses. Eight of eight expected Rhea reactions in the curated
+psilocybin subnetwork are represented. This is reaction representation
+coverage, not evidence of pathway flux in every tissue or strain.</p>
+<h3 id="model-readiness">3.4 Model readiness</h3>
+<p>Two public RNA-seq runs contribute descriptive reaction-expression
+links. There are 447 transporter candidates, but zero curated transport
+or exchange reactions. Only 144 reactions have physiological direction
+evidence. The network lacks a biomass objective, complete Boolean
+gene–protein–reaction rules, curated compartments, thermodynamic
+constraints, and a validated exchange system.</p>
+<h2 id="critical-review-and-limitations">4. Critical review and
+limitations</h2>
+<p>The reachability percentage is conditional on its denominator, seed
+formulation, and direction assumptions. It is not a global completeness
+score and should not be compared directly with genome BUSCO completeness
+or metabolomics feature counts. The fungal defined-medium formulation is
+a computational proxy, not a <em>P. cubensis</em>-validated growth
+medium. Exact-EC joins and RNA expression do not establish enzyme
+activity; metabolite detection does not establish biosynthetic origin.
+Generalized Rhea participants limit elemental and charge auditing.</p>
+<p>The correct next steps are to resolve exact EC-to-Rhea gaps, add
+authoritative producer reactions, run explicitly labeled cofactor
+sensitivity scenarios, and curate compartments, transport, exchange,
+biomass, and gene–protein–reaction logic.</p>
+<h2 id="conclusion">5. Conclusion</h2>
+<p>Terpedia provides a reproducible, evidence-qualified <em>P.
+cubensis</em> metabolic reconstruction. Only 2.92% of unique reaction
+reactants are reachable under the reversible upper bound. The artifact
+is best used as a transparent curation and experimental agenda, not as a
+finished organismal or flux-balance model.</p>
+<h2 id="data-and-code-availability">Data and code availability</h2>
+<p>Source artifacts and reconstruction scripts are in the <a
+href="https://github.com/Terpedia/terpedia-knowledge">Terpedia Knowledge
+repository</a>. The companion Colab notebook is published with this
+paper.</p>
+<h2 id="references">References</h2>
+<ol type="1">
+<li>UniProt reference proteome UP000664032: <a
+href="https://www.uniprot.org/proteomes/UP000664032"
+class="uri">https://www.uniprot.org/proteomes/UP000664032</a></li>
+<li>Rhea reaction database: <a href="https://www.rhea-db.org/"
+class="uri">https://www.rhea-db.org/</a></li>
+<li>ChEBI chemical ontology: <a href="https://www.ebi.ac.uk/chebi/"
+class="uri">https://www.ebi.ac.uk/chebi/</a></li>
+<li>A draft reference assembly of the <em>Psilocybe cubensis</em>
+genome: <a href="https://doi.org/10.12688/f1000research.51613.2"
+class="uri">https://doi.org/10.12688/f1000research.51613.2</a></li>
+<li>Enzymatic Synthesis of Psilocybin: <a
+href="https://doi.org/10.1002/anie.201705489"
+class="uri">https://doi.org/10.1002/anie.201705489</a></li>
+</ol>
+</body>
+</html>
