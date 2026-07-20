@@ -1,0 +1,50 @@
+{
+  "schema": "terpedia-docking-execution-receipt/v1",
+  "run_id": "cloud-run-smoke-20260720T055329Z",
+  "execution_status": "completed",
+  "mode": "bounded end-to-end smoke; not full-panel reproduction",
+  "runtime": "Google Cloud Run Linux chemistry service",
+  "output_sha256": "c11f257e6886d97817dc4b2d8630189eaf53f09f0b00bd014a9278f7f272064a",
+  "input": {
+    "ligand": "linalool",
+    "isomeric_smiles": "C=CC(C)(O)CCC=C(C)C",
+    "pubchem_formula": "C10H18O",
+    "receptor_pdb_id": "6KPF",
+    "receptor_chain": "R",
+    "reference_ligand": {"residue_name": "E3R", "chain": "R", "residue_number": 401},
+    "box_padding_angstrom": 5.0
+  },
+  "preparation": {
+    "rdkit": "2025.09.5",
+    "pdbfixer": "1.12.0",
+    "openmm": "8.4.0",
+    "meeko": "0.7.1",
+    "pH": 7.4,
+    "prepared_atoms": 2250,
+    "repair_added_atoms": ["R:177 ARG CG/CD/NE/CZ/NH1/NH2", "R:319 LYS OXT"],
+    "cofactor_policy": "No heterogens retained for this receptor; reference ligand removed before preparation"
+  },
+  "docking": {
+    "engine": "AutoDock Vina",
+    "version": "1.2.7",
+    "scoring": "vina",
+    "seed": 20260717,
+    "exhaustiveness": 1,
+    "poses": 1,
+    "best_score_kcal_mol": -6.062,
+    "ligand_efficiency_kcal_mol_per_heavy_atom": 0.5511,
+    "provenance_computation_ms": 25593.12
+  },
+  "site": {
+    "center": {"x": 109.348, "y": 108.992, "z": 126.913},
+    "size": {"x": 17.036, "y": 20.481, "z": 17.146},
+    "derived_from": "E3R chain R residue 401 plus 5 Angstrom padding"
+  },
+  "source": {
+    "pdb_url": "https://files.rcsb.org/download/6KPF.pdb",
+    "structure_url": "https://www.rcsb.org/structure/6KPF",
+    "service_version": "1.2.0",
+    "retrieved_at": "2026-07-20T05:53:41.979987+00:00"
+  },
+  "interpretation": "This proves the bounded end-to-end preparation and Vina execution path. It is not evidence of a full-panel reproduction, redocking-gate success, affinity, binding, safety, or clinical efficacy."
+}
