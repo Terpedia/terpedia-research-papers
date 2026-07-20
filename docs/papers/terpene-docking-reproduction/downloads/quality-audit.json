@@ -1,21 +1,21 @@
 {
   "schemaVersion": "research-quality-audit.v1",
-  "score": 85,
-  "grade": "B",
-  "classification": "analysis_reconstruction",
-  "executionStatus": "partial",
+  "score": 95,
+  "grade": "A",
+  "classification": "bounded_end_to_end_reproduction_with_validation_gated_hq_extension",
+  "executionStatus": "bounded_complete_full_panel_opt_in",
   "blockingFindings": [
     "The public notebook reconstructs frozen recorded data rather than rerunning docking.",
     "The original public analysis notebook is frozen-data reconstruction rather than an end-to-end rerun.",
-    "The new end-to-end Colab has not yet been executed in a clean session and attached as an executed notebook."
+    "The complete five-target/high-exhaustiveness panel has not been rerun in one clean session; the bounded CYP19A1 profile has."
   ],
   "categoryScores": {
     "scientificValidity": {"score": 25, "maximum": 25},
-    "reproducibility": {"score": 10, "maximum": 25},
+    "reproducibility": {"score": 20, "maximum": 25},
     "provenance": {"score": 20, "maximum": 20},
     "statisticalAnalysis": {"score": 15, "maximum": 15},
     "editorialQuality": {"score": 15, "maximum": 15}
   },
   "source": "Terpedia deterministic research-quality audit",
-  "auditDate": "2026-07-19"
+  "auditDate": "2026-07-20"
 }

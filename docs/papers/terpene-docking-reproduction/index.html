@@ -298,7 +298,7 @@ fully accessible raw data for complete reproducibility.</p>
 <tr><td>11beta-HSD1</td><td>1XU7</td><td>Cofactor failure</td><td>-</td><td>-</td><td>No candidate score</td></tr>
 </tbody></table>
 <h2 id="reference-figure-and-table-reconstruction">Reference Figure and Table Reconstruction</h2>
-<p>The public Colab executes an analysis reconstruction from the recorded study snapshot; it does not rerun the docking engine from public structures. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.</p>
+<p>The public analysis Colab executes an analysis reconstruction from the recorded study snapshot. A separate <a href="notebooks/end-to-end-rerun.ipynb">end-to-end rerun Colab</a> installs the pinned chemistry environment, runs receptor preparation and validation-gated docking, and writes a machine-readable receipt. Its bounded Linux execution completed successfully on <a href="https://github.com/Terpedia/terpedia-research-papers/actions/runs/29725376243">GitHub Actions run 29725376243</a>: CYP19A1 redocking passed all three seeds with median RMSD 0.6486 A, and 24 candidate docking runs were recorded. The full five-target/high-exhaustiveness panel remains an explicit opt-in mode and is not represented by this bounded receipt. No source figures were supplied in the reference materials available to this study, so no figure is claimed as reproduced.</p>
 <table><thead><tr><th>Source display</th><th>Terpedia display</th><th>Status</th><th>Artifact or blocking reason</th></tr></thead><tbody>
 <tr><td>Table 1</td><td>Table 1</td><td>reproduced</td><td><code>results.xlsx</code> and notebook analysis cells</td></tr>
 <tr><td>Reference figures</td><td>None supplied</td><td>blocked</td><td>Source figure files were not present in the supplied reference package</td></tr>
@@ -365,7 +365,7 @@ The Terpedia chemistry service version used for this analysis was 1.2.0.
 Docking calculations were performed on Google Cloud Run Jobs using the
 <code>terpedia-cheminformatics</code> tool version 1.1.0, with a
 container digest of
-<code>sha256:95e3067ff1592f17200b72852e9f5e92ef9f1a782f1a960259f5c9b096c1eec6</code>.</p>
+<code>sha256:95e3067ff1592f17200b72852e9f5e92ef9f1a782f1a960259f5c9b096c1eec6</code>. The clean-session executed notebook and receipt are preserved in the <a href="https://github.com/Terpedia/terpedia-research-papers/actions/runs/29725376243">GitHub Actions artifact</a>; the notebook SHA-256 is <code>9a1dbbfd35ee19d695d4859d4196975676cdf15fc9de63a86fcdcd081de07ff7</code> and the consolidated receipt SHA-256 is <code>2e7b7b198f644e8cdf81126f062da62c0b95ee371e545d795ff9affacd7a813e</code>.</p>
 <h2 id="ai-disclosure">AI Disclosure</h2>
 <p>This manuscript was generated and edited by the Terpedia Editor
 Agent, an AI system, with engineering assistance from Codex.</p>
