@@ -11,15 +11,12 @@ jobs:
       - name: Check out paper repository
         uses: actions/checkout@v4
 
-      - name: Check out pinned Terpedia chemistry implementation
-        run: git clone --filter=blob:none https://github.com/Terpedia/chat-terpedia-backend.git chat-terpedia-backend
-
       - name: Provision pinned conda chemistry environment
         uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
           activate-environment: chemistry
-          environment-file: chat-terpedia-backend/chemistry-service/environment.yml
+          environment-file: notebooks/terpedia-chemistry-snapshot/environment.yml
           auto-activate-base: false
           channels: conda-forge
 
@@ -30,7 +27,7 @@ jobs:
       - name: Execute the end-to-end notebook
         shell: bash -el {0}
         env:
-          PYTHONPATH: ${{ github.workspace }}/chat-terpedia-backend/chemistry-service
+          PYTHONPATH: ${{ github.workspace }}/notebooks/terpedia-chemistry-snapshot
         run: >-
           jupyter nbconvert --to notebook --execute
           docs/papers/terpene-docking-reproduction/notebooks/end-to-end-rerun.ipynb

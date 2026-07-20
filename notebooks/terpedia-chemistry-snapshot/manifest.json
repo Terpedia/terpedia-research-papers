@@ -1,0 +1,15 @@
+{
+  "schema": "terpedia-public-chemistry-snapshot/v1",
+  "source": "Terpedia chat-terpedia-backend chemistry-service",
+  "source_backend_commit": "2dd1a750dc5272f71bf97109472d659e2ed2d659",
+  "snapshot_sha256": "fb98f7f6d23bd35833af4fef6341f229551bf5637a74682e9488b95a8d67fc85",
+  "files": [
+    {"path": "app/__init__.py", "sha256": "7420382a2cd314384ced7d702c4a4e0ca57ab2a8e89a96977f45b6f64f1adcde"},
+    {"path": "app/chemistry.py", "sha256": "34f8876021a22aff4d7196437689ac13afce927f58426ff697db0d8fa5905df2"},
+    {"path": "app/docking.py", "sha256": "6d53355159caeb57473b9b8c49c58a21c5b210b6221fc0c07a0781f81d941917"},
+    {"path": "app/models.py", "sha256": "da019e8f440b1dd2ed35d0e976457dde78bba74bfa15dacca445b4719a46e6ac"},
+    {"path": "app/receptor_repair.py", "sha256": "c67d55e887bbe25a04b7298ef11e2d6fd068a6b56c9da9992f71c4b719d77213"},
+    {"path": "app/study_data.py", "sha256": "f7149245cb1697b4cbed5f39c06ab75243dcc7234f32cedbb0bbb800da2f8934"},
+    {"path": "environment.yml", "sha256": "d1048147b783283a5c092a21eb7c1d0e5fd44101cd4ecb9f9f52664e07bf5d59"}
+  ]
+}
