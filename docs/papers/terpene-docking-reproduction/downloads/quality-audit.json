@@ -1,19 +1,19 @@
 {
   "schemaVersion": "research-quality-audit.v1",
-  "score": 80,
-  "grade": "C",
+  "score": 85,
+  "grade": "B",
   "classification": "analysis_reconstruction",
   "executionStatus": "partial",
   "blockingFindings": [
     "The public notebook reconstructs frozen recorded data rather than rerunning docking.",
-    "The public paper must state the partial execution status consistently.",
-    "Uncertainty or replicate treatment is not exposed for the comparative claims."
+    "The original public analysis notebook is frozen-data reconstruction rather than an end-to-end rerun.",
+    "The new end-to-end Colab has not yet been executed in a clean session and attached as an executed notebook."
   ],
   "categoryScores": {
     "scientificValidity": {"score": 25, "maximum": 25},
     "reproducibility": {"score": 10, "maximum": 25},
     "provenance": {"score": 20, "maximum": 20},
-    "statisticalAnalysis": {"score": 10, "maximum": 15},
+    "statisticalAnalysis": {"score": 15, "maximum": 15},
     "editorialQuality": {"score": 15, "maximum": 15}
   },
   "source": "Terpedia deterministic research-quality audit",

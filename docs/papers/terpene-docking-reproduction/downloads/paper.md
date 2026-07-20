@@ -65,6 +65,19 @@ The ligand efficiency analysis for CYP19A1 demonstrated a notable difference fro
 ### Enrichment Factor Audit
 A critical audit of the enrichment factor (EF) definition revealed an internal inconsistency in the reference paper [1]. Under the stated EF definition, the EF at a 100 percent cutoff must theoretically equal 1.0. However, the paper reported an EF of 0.38 for 11beta-HSD1 sesquiterpenes at a 100% cutoff, which is inconsistent with the definition and therefore not considered valid in this reproduction [16].
 
+### Validation-Gated HQ Extension
+An asynchronous validation-gated extension was executed on the Terpedia chemistry job using five seeds, exhaustiveness 32, ten poses, and separate Vina/Vinardo scoring. The redocking gate required RMSD <=2.0 Angstrom in at least three of five seeds. The consolidated execution receipt and source-object hashes are available in [execution-receipt-hq-study.json](execution-receipt-hq-study.json) [17].
+
+| Target | PDB | Validation status | Passing seeds | Median RMSD (Angstrom) | Candidate interpretation |
+|---|---|---|---:|---:|---|
+| CB2 | 6KPF | Passed | 3/5 | 1.3090 | Validated shortlist generated |
+| AR | 3V49 | Failed gate | 2/5 | 2.1922 | Candidate docking blocked |
+| CYP19A1 | 3EQM | Passed | 5/5 | 0.6576 | Validated shortlist eligible |
+| ERbeta | 1L2J | Preparation failed | - | - | No candidate score generated |
+| 11beta-HSD1 | 1XU7 | Cofactor parameterization failed | - | - | No candidate score generated |
+
+Seed-level standard deviations were retained for every completed shortlist score in the machine-readable receipt. They describe protocol sensitivity across seeds and are not confidence intervals for binding affinity. The failed targets remain explicit missing results rather than being imputed.
+
 ## Discussion
 This reproduction study provides a sensitivity analysis of the target fishing and molecular docking results presented in the reference manuscript [1], using an open-source computational workflow [6,7,10]. The findings highlight both areas of concordance and significant differences when comparing results from proprietary MOE software with those from RDKit/Meeko/AutoDock Vina.
 
@@ -115,3 +128,4 @@ This manuscript was generated and edited by the Terpedia Editor Agent, an AI sys
 [14] Google Cloud. Cloud Run pricing and billing documentation. Accessed 2026-07-19. [Cloud Run pricing](https://cloud.google.com/run/pricing).
 [15] Terpedia. Reproducibility notebook and public analysis artifacts for this study. Version published 2026-07-19. [Public paper repository](https://github.com/Terpedia/terpedia-research-papers/tree/main/docs/papers/terpene-docking-reproduction).
 [16] Terpedia. Machine-readable docking observations, consensus rows, and analysis tables. Checksummed study artifacts published with this paper; see [results.xlsx](https://github.com/Terpedia/terpedia-research-papers/blob/main/docs/papers/terpene-docking-reproduction/downloads/results.xlsx) and [reference-target-fishing.json](https://github.com/Terpedia/terpedia-research-papers/blob/main/docs/papers/terpene-docking-reproduction/downloads/reference-target-fishing.json).
+[17] Terpedia. Validation-gated five-target HQ docking execution receipt. Cloud Run Job artifacts and SHA-256 manifest, run 2026-07-18. [Public receipt](https://terpedia.github.io/terpedia-research-papers/papers/terpene-docking-reproduction/downloads/execution-receipt-hq-study.json).
