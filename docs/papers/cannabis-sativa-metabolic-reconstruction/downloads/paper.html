@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-07-19" />
+  <title>Evidence-qualified reconstruction of the Cannabis sativa metabolic network from Terpedia</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Evidence-qualified reconstruction of the Cannabis
+sativa metabolic network from Terpedia</h1>
+<p class="date">2026-07-19</p>
+</header>
+<h1
+id="evidence-qualified-reconstruction-of-the-cannabis-sativa-metabolic-network-from-terpedia">Evidence-qualified
+reconstruction of the <em>Cannabis sativa</em> metabolic network from
+Terpedia</h1>
+<h2 id="abstract">Abstract</h2>
+<p>We reconstructed a provenance-linked draft metabolic network for
+<em>Cannabis sativa</em> in Terpedia and evaluated whether its reaction
+reactants are reachable from an explicit plant defined-medium proxy. The
+reconstruction uses the UniProt reference proteome UP000583929 (30,304
+proteins; Jamaican Lion 4 male) joined to Rhea reactions and ChEBI
+chemical participants. The resulting catalog contains 1,086 Rhea master
+reactions and 1,245 catalog ChEBI participants, of which 831 unique
+metabolites occur as reaction reactants in the reachability graph. Only
+16 reactants (1.93%) are reachable under curated physiological
+directions, 24 (2.89%) under a hybrid direction mode, and 26 (3.13%)
+under a fully reversible structural upper bound. The analysis produces
+70 unresolved exact-EC reaction hypotheses, 369 missing-producer
+hypotheses, and 1,319 blocked-known-reaction hypotheses; 1,158 blocked
+hypotheses retain candidate enzyme/protein support. The catalog has
+3,564 proteins with exact EC annotations, 695 exact EC numbers mapped to
+Rhea, 1,032 reactions with directional reaction SMILES, 164 reactions
+with physiological direction evidence, and 1,487 transporter candidates.
+This is not a complete Cannabis flux model: compartments, exchanges,
+biomass, thermodynamic constraints, and complete gene–protein–reaction
+logic remain uncurated. Terpedia therefore provides a reproducible,
+evidence-qualified research substrate and a prioritized hypothesis
+agenda, not proof of every Cannabis pathway or cannabinoid biosynthetic
+flux.</p>
+<p><strong>Keywords:</strong> <em>Cannabis sativa</em>; metabolic
+reconstruction; pathway inference; Rhea; ChEBI; enzyme annotation;
+cannabinoid biology; Terpedia</p>
+<h2 id="introduction">1. Introduction</h2>
+<p>Cannabis research spans a chemically rich metabolome, cultivar
+variation, and a genome whose enzyme annotations are distributed across
+heterogeneous databases. The presence of a compound, a pathway
+association, or an enzyme annotation is not equivalent to a complete
+organismal metabolic model. A useful reconstruction must retain those
+distinctions and expose where the graph cannot bootstrap from
+defined-medium inputs.</p>
+<p>This study applies the Terpedia pathway-inference workflow previously
+used for fungal reconstruction to <em>C. sativa</em>. We ask three
+questions: (i) how many reference-proteome enzyme annotations resolve to
+standardized reactions; (ii) what fraction of unique reaction reactants
+is reachable from a plant defined- medium proxy; and (iii) which
+reaction, enzyme, and gene hypotheses should be prioritized to close the
+network.</p>
+<h2 id="materials-and-methods">2. Materials and methods</h2>
+<h3 id="reference-proteome-and-reaction-projection">2.1 Reference
+proteome and reaction projection</h3>
+<p>The reference proteome was UniProt UP000583929, <em>C. sativa</em>
+cv. Jamaican Lion 4 (male), containing 30,304 protein entries and
+associated with the JAATIQ010000000 assembly. Exact and partial EC
+annotations, direct catalytic activities, physiological direction
+evidence, candidate compartments, and transport-related annotations were
+parsed from the UniProt tabular export. Exact EC numbers were joined to
+Rhea master reactions. Rhea equations were parsed into ChEBI reactant
+and product entities; formulas, structures, elemental balance, and
+formal charge were retained where available.</p>
+<p>This projection is an annotation catalog, not a manually validated
+Cannabis model. Exact-EC-to-Rhea joins are explicitly distinguished from
+direct biochemical assays, homology, expression, and metabolomics
+observation.</p>
+<h3 id="hypergraph-reachability">2.2 Hypergraph reachability</h3>
+<p>Each reaction is a directed hyperedge. An operation fires only when
+every metabolite on its input side is reachable. Products are added
+until a fixed point. The denominator is every unique ChEBI entity
+appearing as a reactant in the reaction graph, yielding 831 reactants;
+the larger catalog participant count (1,245) includes ChEBI entities
+retained outside the executable reaction sides.</p>
+<p>The seed set is a glucose-based plant defined-medium proxy containing
+glucose, ammonium, nitrate, phosphate, sulfate, potassium, sodium,
+magnesium, calcium, iron, molybdate, water, proton, oxygen, and carbon
+dioxide. Eighteen network entities resolve to these seeds. Zinc,
+manganese, borate, and biotin are retained as requested ingredients but
+are absent from the reaction-participant catalog. The proxy is
+computational and is not asserted to be a tissue-culture recipe for
+Cannabis.</p>
+<p>Three direction modes were evaluated: curated physiological
+directions only; curated directions plus unknown-direction reactions
+treated as reversible; and all reactions reversible as a structural
+upper bound. Stoichiometric coefficients were retained but not
+interpreted as flux quantities. No exchange, biomass, or compartment
+constraints were invented.</p>
+<h3 id="hypothesis-generation">2.3 Hypothesis generation</h3>
+<p>Three hypothesis classes were generated. Exact-EC proteins without a
+projected <code>catalyzes</code> edge were grouped by EC number as
+unresolved reaction hypotheses. Unreachable metabolites with no producer
+reaction in the included Rhea catalog were recorded as missing-producer
+hypotheses. Existing reactions consuming unreachable metabolites were
+recorded as blocked-known-reaction hypotheses, retaining the equation
+and available protein, locus, gene, and EC support. Missing reaction
+chemistry was never fabricated.</p>
+<h3 id="reproducibility">2.4 Reproducibility</h3>
+<p>The analysis was generated in the Terpedia Knowledge repository and
+published with the companion Colab notebook in this research repository.
+The notebook clones Terpedia Knowledge, loads the versioned Cannabis
+network and reports, reconstructs the reaction sides, reruns the
+fixed-point closure, and asserts agreement with the stored results.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build:cannabis-sativa-network</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build:cannabis-sativa-reachability</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build:cannabis-sativa-hypotheses</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> test</span></code></pre></div>
+<h2 id="results">3. Results</h2>
+<h3 id="annotation-and-catalog-scale">3.1 Annotation and catalog
+scale</h3>
+<p>The reference proteome contains 3,564 proteins with exact EC
+annotations (11.76%), representing 765 unique exact EC numbers and 41
+partial EC numbers. Six hundred ninety-five exact EC numbers map to Rhea
+(90.85%), resolving 2,885 proteins in the source annotation calculation.
+The projected catalog contains 1,086 Rhea master reactions, 1,032
+reactions with directional reaction SMILES, and 1,245 catalog ChEBI
+participants. Of these reactions, 676 are element- balanced and 801 are
+charge-balanced among auditable equations; 410 and 285, respectively,
+are not auditable because of generalized or incomplete chemical
+representations.</p>
+<p>The reaction graph has 21 bipartite connected components. Its largest
+component contains 1,063 reactions and 1,195 metabolites, while 634
+metabolites are boundary participants. These are structural catalog
+statistics and do not imply cellular flux.</p>
+<h3 id="defined-medium-reachability">3.2 Defined-medium
+reachability</h3>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr>
+<th>Direction mode</th>
+<th style="text-align: right;">Reachable reactants</th>
+<th style="text-align: right;">Reactant denominator</th>
+<th style="text-align: right;">Reachability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curated directions only</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">831</td>
+<td style="text-align: right;">1.93%</td>
+</tr>
+<tr>
+<td>Curated directions + unknown reversible</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">831</td>
+<td style="text-align: right;">2.89%</td>
+</tr>
+<tr>
+<td>Fully reversible upper bound</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">831</td>
+<td style="text-align: right;">3.13%</td>
+</tr>
+</tbody>
+</table>
+<p>Relaxing directionality adds only two percentage points of reactant
+closure in absolute terms. The low upper bound indicates that missing
+producer chemistry, unreachable precursor chains, and unseeded
+intracellular currencies dominate the current gap. ATP, NAD(P)H, CoA,
+and amino acids were not silently seeded because doing so would change
+the defined-medium question.</p>
+<h3 id="reaction-enzyme-and-gene-hypotheses">3.3 Reaction, enzyme, and
+gene hypotheses</h3>
+<p>The hypothesis layer identifies 684 exact-EC proteins without a
+projected <code>catalyzes</code> edge, grouped into 70 unresolved
+exact-EC hypotheses. A further 478 proteins have partial EC annotations
+without an included Rhea mapping. There are 369 metabolites with no
+producer reaction in the catalog. Existing reactions produce 1,319
+blocked-known-reaction hypotheses; 1,158 retain at least one candidate
+enzyme/protein association.</p>
+<p>These hypotheses are curation targets, not newly asserted Cannabis
+biochemistry. The highest-value next steps are authoritative EC-to-Rhea
+resolution, producer reaction discovery for central precursor gaps, and
+validation of candidate enzyme–locus links with reciprocal orthology,
+tissue expression, and biochemical assays.</p>
+<h3 id="compartments-transport-and-directionality">3.4 Compartments,
+transport, and directionality</h3>
+<p>The catalog contains 1,487 transporter candidates, 1,210 with
+transmembrane topology support and 801 with annotation-specificity
+support. Twenty-four Rhea reactions have explicit in/out notation, but
+none are promoted to curated Cannabis transport or exchange reactions.
+Candidate compartment evidence is available for 728 reactions (67.03%),
+while only 164 reactions (15.10%) have physiological direction evidence
+and 11 have experimental direction evidence.</p>
+<h3 id="cannabis-metabolome-context">3.5 Cannabis metabolome
+context</h3>
+<p>Terpedia’s CannabisDB layer provides compound identity, cultivar
+concentration, protein-association, and pathway-association records.
+Those relations are valuable metabolome and target context, but they do
+not supply stoichiometric reaction equations or establish biosynthetic
+flux. Accordingly, this network analysis does not report a cannabinoid
+pathway “coverage percentage.” A future version should define an
+explicit, source-grounded cannabinoid reaction panel before calculating
+such a metric.</p>
+<h2 id="critical-review-and-threats-to-validity">4. Critical review and
+threats to validity</h2>
+<p>The headline percentage is conditional on the denominator, seed set,
+and graph semantics. Using all participants instead of reactants, or
+seeding ATP and NAD(P)H, would produce different values. The plant
+medium proxy is not a validated Cannabis tissue-culture formulation.
+Direction evidence is annotation support rather than thermodynamic
+feasibility. Exact-EC, projected-Rhea, candidate-enzyme, transporter,
+and metabolomics counts use different entities and denominators and must
+not be combined into a global score.</p>
+<p>The 684-protein hypothesis count is the number of exact-EC protein
+entities with no projected <code>catalyzes</code> edge in this Terpedia
+bundle. It is not the arithmetic complement of the separate
+2,885-protein source annotation-resolution value. This distinction is
+necessary because the joins answer different questions.</p>
+<p>The Colab notebook independently reruns the graph closure and checks
+stored counts, but it does not independently validate upstream UniProt,
+Rhea, ChEBI, or CannabisDB records. A peer-review release should pin a
+commit and archive all upstream source files and release metadata.</p>
+<h2 id="discussion">5. Discussion</h2>
+<p>The Cannabis catalog is larger than the current <em>P. cubensis</em>
+catalog in both proteome and reaction counts, but its reachability
+remains low. This is not evidence that Cannabis lacks metabolism; it
+shows that a reaction catalog built from available enzyme annotations
+does not yet close from a defined medium. The reversible upper bound of
+3.13% is a useful diagnostic of missing precursor and cofactor closure
+rather than a biological activity estimate.</p>
+<p>The practical reconstruction agenda is to resolve the 70 exact-EC
+hypotheses, add experimentally supported producer reactions for the 369
+no-producer metabolites, and then add explicit compartments, transport,
+exchanges, biomass, and Boolean gene–protein–reaction rules. CannabisDB
+compound and cultivar data can then be used as orthogonal metabolome
+context, while curated cannabinoid reaction panels can be evaluated
+without conflating pathway association with stoichiometric reaction
+coverage.</p>
+<h2 id="limitations">6. Limitations</h2>
+<p>The reference proteome represents one male cultivar and is not
+population- complete. Automated protein annotations may be incomplete or
+overly broad. Generalized Rhea participants limit elemental and charge
+auditing. Candidate compartments and transport annotations are not model
+assignments. CannabisDB pathway and target relations do not establish
+reaction direction or flux. No biomass objective, exchange system,
+thermodynamic model, or inferential differential-expression layer is
+included.</p>
+<h2 id="conclusions">7. Conclusions</h2>
+<p>Terpedia now supports a reproducible <em>C. sativa</em> draft
+metabolic reconstruction with explicit reachability and
+reaction/enzyme/gene hypotheses. Only 3.13% of unique reaction reactants
+are reachable under the fully reversible upper bound from the plant
+defined-medium proxy. The network should be treated as an auditable
+research substrate and prioritized curation agenda, not as a complete
+Cannabis metabolic or flux-balance model.</p>
+<h2 id="data-and-code-availability">Data and code availability</h2>
+<p>The computational source and generated artifacts are in the Terpedia
+Knowledge repository under the Cannabis network, reachability, and
+hypothesis scripts and reports. The companion notebook is published in
+this repository at
+<code>notebooks/cannabis_sativa_metabolism_colab.ipynb</code>.</p>
+<h2 id="references">References</h2>
+<ol type="1">
+<li>UniProt <em>Cannabis sativa</em> reference proteome UP000583929: <a
+href="https://www.uniprot.org/proteomes/UP000583929"
+class="uri">https://www.uniprot.org/proteomes/UP000583929</a></li>
+<li>Rhea reaction database: <a href="https://www.rhea-db.org/"
+class="uri">https://www.rhea-db.org/</a></li>
+<li>ChEBI chemical ontology: <a href="https://www.ebi.ac.uk/chebi/"
+class="uri">https://www.ebi.ac.uk/chebi/</a></li>
+<li>Cannabis Database (CannabisDB) source relations: <a
+href="https://cannabisdatabase.ca/"
+class="uri">https://cannabisdatabase.ca/</a></li>
+<li>Terpedia Knowledge source repository: <a
+href="https://github.com/Terpedia/terpedia-knowledge"
+class="uri">https://github.com/Terpedia/terpedia-knowledge</a></li>
+</ol>
+</body>
+</html>
