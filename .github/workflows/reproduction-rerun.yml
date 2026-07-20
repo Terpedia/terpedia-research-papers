@@ -1,0 +1,47 @@
+name: End-to-end reproduction rerun
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rerun:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - name: Check out paper repository
+        uses: actions/checkout@v4
+
+      - name: Check out pinned Terpedia chemistry implementation
+        run: git clone --filter=blob:none https://github.com/Terpedia/chat-terpedia-backend.git chat-terpedia-backend
+
+      - name: Provision pinned conda chemistry environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: chemistry
+          environment-file: chat-terpedia-backend/chemistry-service/environment.yml
+          auto-activate-base: false
+          channels: conda-forge
+
+      - name: Install notebook execution tooling
+        shell: bash -el {0}
+        run: python -m pip install --quiet nbconvert jupyter
+
+      - name: Execute the end-to-end notebook
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/chat-terpedia-backend/chemistry-service
+        run: >-
+          jupyter nbconvert --to notebook --execute
+          docs/papers/terpene-docking-reproduction/notebooks/end-to-end-rerun.ipynb
+          --output executed-end-to-end-rerun.ipynb
+          --ExecutePreprocessor.timeout=1800
+          --ExecutePreprocessor.kernel_name=python3
+
+      - name: Upload executed notebook and receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: terpene-docking-end-to-end-rerun-${{ github.sha }}
+          path: |
+            executed-end-to-end-rerun.ipynb
+            .terpedia-runtime/terpedia-end-to-end-results/*.json
